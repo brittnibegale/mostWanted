@@ -8,10 +8,10 @@ function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
-    // TODO: search by name
+    //var fullName = checkingName(people);//this will turn in to an arrray TODO: search by name
     break;
     case 'no':
-    // TODO: search by traits
+    age();
     break;
     default:
     app(people); // restart app
@@ -19,6 +19,12 @@ function app(people){
   }
 }
 
+function doTheyKnowOccupationObject (){
+
+	var occupationUserInput = prompt("Do you know their occupation?").toLowerCase();
+		yesNo(occupationUserInput);
+	
+}
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
 
@@ -54,10 +60,16 @@ function mainMenu(person, people){
 function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
-
-  // TODO: find the person using the name they entered
-
+	
+	people.filter(function (el)){
+	if (el.firstName === firstName && el.lastName === lastName){
+		return firstName && lastName;
+	
+	}
 }
+
+//if (firstName === data[].firstName)
+
 
 // alerts a list of people
 function displayPeople(people){
@@ -92,3 +104,11 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
+
+function dataBaseRun(){
+	app(people);
+	
+
+
+}
+dataBaseRun();

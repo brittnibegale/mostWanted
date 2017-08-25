@@ -8,11 +8,8 @@ function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
-<<<<<<< HEAD
     searchByName(people);//TODO: search by name
-=======
-    //var fullName = checkingName(people);//this will turn in to an arrray TODO: search by name
->>>>>>> 995e2e0185f88c0ac03216c7e0d4ff55052777d1
+
     break;
     case 'no':
     age();
@@ -107,13 +104,7 @@ function chars(input){
 }
 
 function dataBaseRun(){
-<<<<<<< HEAD
   app(people);
-=======
-	app(people);
-	
 
-
->>>>>>> 995e2e0185f88c0ac03216c7e0d4ff55052777d1
 }
 dataBaseRun();

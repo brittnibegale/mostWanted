@@ -1,11 +1,14 @@
 "use strict"
 /*
-Build all of your functions for displaying and gathering information below (GUI).
+Build all of your functions for displaying and gathering information below 
 */
 
 // app is the function called to start the entire application
 function app(people){
-  var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
+  var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'"., yesNo).toLowerCase();
+  if (userEntry !== "yes" && !== "no"){
+    userEntry = prompt ("Do you know the name of the person you are looking for? Please enter 'yes' or 'no'.").toLowerCase();
+  }
   switch(searchType){
     case 'yes':
     searchByName(people);//TODO: search by name
@@ -22,6 +25,7 @@ function app(people){
 function searchByEyeColor() {
 var searchByEyeColor;
 var eyeColor;
+
 var informationForSearch;
 var userInput = informationForSearch;
 userInput = prompt ("Would you like to search by eye color? Enter 'yes' or 'no.'").toLowerCase();
@@ -49,6 +53,46 @@ userInput = prompt ("Would you like to search by eye color? Enter 'yes' or 'no.'
 		} //next prompt or name choices
 }
 searchByEyeColor();
+
+
+
+
+function doYouKnowAge(dob){
+  var ageSearch = dob.split("/");
+  var yearBorn = "";
+  var age = ageSearch[2];
+  var usersCall = searchInfo;
+  usersCall = prompt("Do you want to search by age? Please enter 'Yes' or 'No'.").toLowerCase();
+    if (usersCall !== "Yes" !== "No"){
+      userCall = prompt("Have you any idea of how old the person is? Pleae enter 'Yes' or 'No'.").toLowerCase();
+    }
+    else if (usersCall == "Yes"){
+      var birthYear = prompt("Can you give an idea of when the person was born?").toLowerCase();
+      while (birthYear <== "1940"){
+      console.log("Returning people born before 1940");
+      }
+      if (birthYear <== "1950"){
+      console.log("Returning people born between 1940 and 1950");
+      }
+      else if (birthYear <== "1960"){
+      console.log("Returning people born between 1950 and 1960");
+      }
+      else if (birthYear <== "1970"){
+      console.log("Returning people born between 1960 and 1970");
+      }
+      else if (birthYear <== "1980"){
+      console.log("Returning people born between 1970 and 1980");
+      }
+      else if (birthYear <=="1990"){
+      console.log("Returning people born between 1980 and 1990");
+      }
+    else if (usersCall == "No"){
+    }
+
+    }
+}
+doYouKnowAge();
+
 
 
 

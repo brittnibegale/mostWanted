@@ -19,6 +19,43 @@ function app(people){
   }
 }
 
+
+
+function searchByEyeColor() {
+var searchByEyeColor;
+var informationForSearch
+var userInput = informationForSearch;
+userInput = prompt ("Would you like to search by eye color? Enter 'yes' or 'no.'").toLowerCase();
+	if (userInput !== "yes" && userInput !== "no") {
+		userInput = prompt ("Do you k
+		now the eye color of the person for whom you are seaching? Enter 'yes' or 'no'.").toLowerCase();
+	}
+	else if (userInput === "yes") {
+		var eyeColor = prompt ("Are the person's eyes black, blue, brown, green, or hazel?").toLowerCase(); 
+		while (eyeColor === "Brown") {
+		console.log("Searching for people with brown eyes");
+		} //next prompt
+		if (eyeColor === "Black") {
+		console.log("Searching for people with black eyes");
+		} //next prompt
+		else if (eyeColor === "Blue") {
+		console.log("Searching for people with blue eyes");
+		} //next prompt
+		else if (eyeColor === "Green") {
+		console.log("Searching for people with green eyes");
+		} //next prompt
+		else if (eyeColor === "Hazel") {
+		console.log("Searching for people with hazel eyes");
+		} //next prompt
+	else if (userInput === "no") {
+	} //next prompt
+	}
+}
+searchByEyeColor();
+
+
+
+
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
 

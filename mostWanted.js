@@ -34,21 +34,21 @@ userInput = prompt ("Would you like to search by eye color? Enter 'yes' or 'no.'
 		var eyeColor = prompt ("Are the person's eyes black, blue, brown, green, or hazel?").toLowerCase(); 
 		while (eyeColor === "Brown") {
 		console.log("Searching for people with brown eyes");
-		} //next prompt
+		} //next prompt or name choices
 		if (eyeColor === "Black") {
 		console.log("Searching for people with black eyes");
-		} //next prompt
+		} //next prompt or name choies
 		else if (eyeColor === "Blue") {
 		console.log("Searching for people with blue eyes");
-		} //next prompt
+		} //next prompt or name choices
 		else if (eyeColor === "Green") {
 		console.log("Searching for people with green eyes");
-		} //next prompt
+		} //next prompt or name choices
 		else if (eyeColor === "Hazel") {
 		console.log("Searching for people with hazel eyes");
-		} //next prompt
+		} //next prompt or name choices
 	else if (userInput === "no") {
-	} //next prompt
+	} //next prompt or name choices
 	}
 }
 searchByEyeColor();

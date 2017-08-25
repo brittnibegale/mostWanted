@@ -1,6 +1,6 @@
 "use strict"
 /*
-Build all of your functions for displaying and gathering information below (GUI).
+Build all of your functions for displaying and gathering information below 
 */
 
 // app is the function called to start the entire application
@@ -22,15 +22,18 @@ function app(people){
   }
 }
 
-
 function searchByEyeColor() {
 var searchByEyeColor;
+var eyeColor;
+
 var informationForSearch;
 var userInput = informationForSearch;
 userInput = prompt ("Would you like to search by eye color? Enter 'yes' or 'no.'").toLowerCase();
 	if (userInput !== "yes" && userInput !== "no") {
 		userInput = prompt ("Do you know the eye color of the person for whom you are seaching? Enter 'yes' or 'no'.").toLowerCase();
 	}
+	else if (userInput === "no"){
+	}//new search criteria
 	else if (userInput === "yes") {
 		var eyeColor = prompt ("Are the person's eyes black, blue, brown, green, or hazel?").toLowerCase(); 
 		while (eyeColor === "Brown") {
@@ -48,11 +51,9 @@ userInput = prompt ("Would you like to search by eye color? Enter 'yes' or 'no.'
 		else if (eyeColor === "Hazel") {
 		console.log("Searching for people with hazel eyes");
 		} //next prompt or name choices
-	else if (userInput === "no") {
-	} //next prompt or name choices
-	}
 }
 searchByEyeColor();
+
 
 
 

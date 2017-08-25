@@ -1,0 +1,115 @@
+function rollFourSidedDie(){
+	var determineStrength = prompt (player1Name + ", how much power will you have behind this attack?");
+	var determineDie = Math.floor((Math.random() * 4) + 1);
+	return determineDie;
+}	
+
+
+
+function pickNextDieToRoll(fourSidedResult) {
+    var offensiveStrategy = prompt (player1Name + ", how would you like to combat your opponent? Enter the corresponding numeric value to choose your strategy: 1. trick, 2. trap, or 3. sword fight.");
+	var potentialPoints;
+	
+	if (fourSidedResult === 1) {
+		console.log(player1Name+ ", roll the eight-sided die.");
+		potentialPoints = rollEightSidedDie();
+	}
+	else if (fourSidedResult === 2) {
+		console.log(player1Name+ ", roll the ten-sided die.");
+		potentialPoints = rollTenSidedDie();	
+		}
+	else if (fourSidedResult === 3) {
+		console.log(player1Name+ ", roll the twelve-sided die.");
+		potentialPoints === rollTwelveSidedDie();
+	}
+	else if (fourSidedResult === 4) {
+		console.log(player1Name+ ", roll the twenty-sided die.");
+		potentialPoints === rollTwentySidedDie();
+	}	
+	
+	return potentialPoints;
+}	
+	
+function rollEightSidedDie() {	
+	var spacesMoved = Math.floor((Math.random() * 8) + 1);
+	console.log(player1Name+ ", you will advance " + spacesMoved + " paces if you can conquer your opponent.");
+	return spacesMoved;
+}
+	
+function rollTenSidedDie() {
+
+	var spacesMoved = Math.floor((Math.random() * 10) + 1);
+	console.log(player1Name+ ", you will advance " + spacesMoved + " paces if you can conquer your opponent.");
+	return spacesMoved;
+}
+
+function rollTwelveSidedDie() {
+	var spacesMoved = Math.floor((Math.random() * 12) + 1);		
+	console.log(player1Name+ ", you will advance " + spacesMoved + "paces if you can conquer your opponent.");
+	return spacesMoved;
+}
+
+function rollTwentySidedDie() {
+	var spacesMoved = Math.floor((Math.random() * 20) + 1);		
+	console.log(player1Name+ ", you will advance " + spacesMoved + " paces if you can conquer your opponent.");
+	return spacesMoved;
+}		
+		
+function rollSixSidedDie() {
+	var defensiveStrategy = Math.floor((Math.random() * 6) + 1);
+	
+	if (defensiveStrategy === 1 || defensiveStrategy === 2) {
+		console.log(player1Name+ ", be clever!");
+		battles();
+	}
+	else if (defensiveStrategy === 3 || defensiveStrategy === 4) {
+		console.log(player1Name+ ", be illusive!");
+		battles();
+	}
+	else if (defensiveStrategy === 5 || defensiveStrategy === 6) {
+		console.log(player2Name+ ", defend yourself!");
+		battles();
+	}
+}
+
+function battles2() {
+		var player1Score === 0;
+		var player2Score === 0;
+		
+	if (offensiveStrategy === 1 && (defensiveStrategy === 1 || defensiveStrategy === 2)) {
+		console.log(player2Name+ ", the trick failed! Great defense! Advance " + spacesMoved + " paces.");	
+		player2Score = player2Score + spacesMoved;
+	}
+	else if (offensiveStrategy === 1 && (defensiveStrategy === 3 || defensiveStrategy === 4)) {
+		console.log(player1Name+ ", nice trick attacker! Advance " + spacesMoved + " paces.");
+		player1Score = player1Score + spacesMoved;
+	}
+	else if (offensiveStrategy === 1 && (defensiveStrategy === 5 || defensiveStrategy === 6)) {
+		console.log(player1Name+ ", nice trick attacker! Advance " + spacesMoved + " paces.");
+		player1Score = player1Score + spacesMoved;
+	}
+	else if (offensiveStrategy === 2 && (defensiveStrategy === 3 || defensiveStrategy === 4)) {
+		console.log(player2Name+ ", nice hiding spot! Great defense! Advance " + spacesMoved + " paces.");
+		player2Score = player2Score + spacesMoved;
+	}
+	else if (offensiveStrategy === 2 &&(defensiveStrategy === 1 || defensiveStrategy === 2)) {
+		console.log(player1Name+ ", wow! They fell for that?! Nice trap attacker! Advance " + spacesMoved + " saces.");
+		player1Score = player1Score + spacesMoved;
+	}
+	else if (offensiveStrategy === 2 && (defensiveStrategy === 5 || defensiveStrategy === 6)) {
+		console.log(player1Name+ ", wow! They fell for that?! Nice trap attacker! Advance " + spacesMoved + " paces.");
+		player1Score = player1Score + spacesMoved;
+	}
+	else if (offensiveStrategy === 3 &&(defensiveStrategy === 5 || defensiveStrategy === 6)) {
+		console.log(player2Name+ ", relentless resilience! Great defense! Advance " + spacesMoved + " paces.");
+		player2Score = player2Score + spacesMoved;
+	}
+	else if (offensiveStrategy === 3 && (defensiveStrategy === 1 || defensiveStrategy === 2)) {
+		console.log(player1Name+ ", on guard! Smooth sword skills attacker! Advance " + spacesMoved + " paces.");
+		player1Score = player1Score + spacesMoved;
+	}
+	else if (offensiveStrategy === 3 && (defensiveStrategy === 3 || defensiveStrategy === 4)) {
+		console.log(player1Name+ ", on guard! Smooth sword skills attacker! Advance " + spacesMoved + " paces.");
+		player1Score = player1Score + spacesMoved;
+	}
+}

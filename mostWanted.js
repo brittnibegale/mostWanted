@@ -5,7 +5,10 @@ Build all of your functions for displaying and gathering information below (GUI)
 
 // app is the function called to start the entire application
 function app(people){
-  var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
+  var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'"., yesNo).toLowerCase();
+  if (userEntry !== "yes" && !== "no"){
+    userEntry = prompt ("Do you know the name of the person you are looking for? Please enter 'yes' or 'no'.").toLowerCase();
+  }
   switch(searchType){
     case 'yes':
     searchByName(people);//TODO: search by name

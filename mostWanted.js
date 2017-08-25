@@ -89,6 +89,7 @@ function doYouKnowAge(dob){
     }
 
     }
+    return age;
 }
 doYouKnowAge();
 

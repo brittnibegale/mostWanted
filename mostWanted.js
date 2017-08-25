@@ -59,30 +59,30 @@ searchByEyeColor();
 function doYouKnowAge(dob){
   var ageSearch = dob.split("/");
   var yearBorn = "";
-  var dob = ageSearch[2];
+  var age = ageSearch[2];
   var usersCall = searchInfo;
   usersCall = prompt("Do you want to search by age? Please enter 'Yes' or 'No'.").toLowerCase();
     if (usersCall !== "Yes" !== "No"){
       userCall = prompt("Have you any idea of how old the person is? Pleae enter 'Yes' or 'No'.").toLowerCase();
     }
     else if (usersCall == "Yes"){
-      var dob = prompt("Can you give an idea of when the person was born?").toLowerCase();
-      while (dob <== "1940"){
+      var birthYear = prompt("Can you give an idea of when the person was born?").toLowerCase();
+      while (birthYear <== "1940"){
       console.log("Returning people born before 1940");
       }
-      if (dob <== "1950"){
+      if (birthYear <== "1950"){
       console.log("Returning people born between 1940 and 1950");
       }
-      else if (dob <== "1960"){
+      else if (birthYear <== "1960"){
       console.log("Returning people born between 1950 and 1960");
       }
-      else if (dob <== "1970"){
+      else if (birthYear <== "1970"){
       console.log("Returning people born between 1960 and 1970");
       }
-      else if (dob <== "1980"){
+      else if (birthYear <== "1980"){
       console.log("Returning people born between 1970 and 1980");
       }
-      else if (dob <=="1990"){
+      else if (birthYear <=="1990"){
       console.log("Returning people born between 1980 and 1990");
       }
     else if (usersCall == "No"){

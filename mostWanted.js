@@ -22,6 +22,7 @@ function app(people){
   }
 }
 
+<<<<<<< HEAD
 // function searchByEyeColor() {
 // var searchByEyeColor;
 // var eyeColor;
@@ -94,6 +95,114 @@ function app(people){
 // }
 // //why dont we just use filter on this?
 // doYouKnowAge();// we should try and figure out a differnt way to call this other than a global call for each
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function searchByEyeColor(people) {
+	var userInput =  prompt ("What is the eye color of the person for whom you are searching?");
+
+	var findPeople = [];
+	for (var i = 0; i < people.length; i++) {
+		if (userInput === people[i].eyeColor) {
+			findPeople.push(people[i]);
+		}
+	}
+	return findPeople;
+}
+
+searchByEyeColor();
+}
+
+
+function searchByWeight(people) {
+	var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
+
+	var findPeople = [];
+	for (var i = 0; i < people.length; i++) {
+		if (userInput === people[i].weight) {
+			findPeople.push(people[i]);
+		}
+	}
+	return findPeople;
+}
+
+searchByHeight ();
+function searchByHeight(people) {
+	var userInput =  prompt ("In inches, what is the height of the person for whom you are searching?");
+
+	var findPeople = [];
+	for (var i = 0; i < people.length; i++) {
+		if (userInput === people[i].height) {
+			findPeople.push(people[i]);
+		}
+	}
+	return findPeople;
+}
+
+searchByHeight();
+
+
+function doYouKnowAge(dob){
+  var ageSearch = dob.split("/");
+  var yearBorn = "";
+  var age = ageSearch[2];
+  var usersCall = searchInfo;
+  usersCall = prompt("Do you want to search by age? Please enter 'Yes' or 'No'.").toLowerCase();
+    if (usersCall !== "Yes" !== "No"){
+      userCall = prompt("Have you any idea of how old the person is? Pleae enter 'Yes' or 'No'.").toLowerCase();
+    }
+    else if (usersCall == "Yes"){
+      var birthYear = prompt("Can you give an idea of when the person was born?").toLowerCase();
+      while (birthYear <== "1940"){
+      console.log("Returning people born before 1940");
+      }
+      if (birthYear <== "1950"){
+      console.log("Returning people born between 1940 and 1950");
+      }
+      else if (birthYear <== "1960"){
+      console.log("Returning people born between 1950 and 1960");
+      }
+      else if (birthYear <== "1970"){
+      console.log("Returning people born between 1960 and 1970");
+      }
+      else if (birthYear <== "1980"){
+      console.log("Returning people born between 1970 and 1980");
+      }
+      else if (birthYear <=="1990"){
+      console.log("Returning people born between 1980 and 1990");
+      }
+    else if (usersCall == "No"){
+    }
+
+    }
+    return age;
+}
+doYouKnowAge();
+>>>>>>> 3206e72bb3a34713a155ca9855fec9e4cac797a7
 
 
 

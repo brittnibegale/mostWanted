@@ -132,7 +132,6 @@ function searchByTrait(people){
 }
 
 function searchByEyeColor(people) {
-<<<<<<< HEAD
   var userInput =  prompt ("What is the eye color of the person for whom you are searching?");
 
   var findPeople = [];
@@ -147,22 +146,6 @@ function searchByEyeColor(people) {
 function searchByWeight(people) {
   var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
   var findPeople = [];
-=======
-	var userInput =  prompt ("What is the eye color of the person for whom you are searching?");
-
-	var myResults = [];
-	for (var i = 0; i < people.length; i++) {
-		if (userInput === people[i].eyeColor) {
-			myResults.push(people[i]);
-		}
-	}
-	return myResults;
-}
-
-function searchByWeight(people) {
-	var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
-  var myResults = [];
->>>>>>> 4e6db5b9baa08d1e37353ebe5b18179fee0f9574
   for (var i = 0; i < people.length; i++){
     if (userInput === people [i].weight){
       myResults.push(people[i]);
@@ -173,17 +156,6 @@ function searchByWeight(people) {
 
 
 function searchByHeight(people) {
-<<<<<<< HEAD
-  var userInput =  prompt ("In inches, what is the height of the person for whom you are searching?");
-
-  var findPeople = [];
-  for (var i = 0; i < people.length; i++) {
-    if (userInput === people[i].height) {
-      findPeople.push(people[i]);
-    }
-  }
-  return findPeople;
-=======
 	var userInput =  prompt ("In inches, what is the height of the person for whom you are searching?");
 
 	var myResults = [];
@@ -193,7 +165,6 @@ function searchByHeight(people) {
 		}
 	}
 	return myResults;
->>>>>>> 4e6db5b9baa08d1e37353ebe5b18179fee0f9574
 }
 
 function searchByOccupation(people){

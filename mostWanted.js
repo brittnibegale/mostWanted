@@ -22,39 +22,74 @@ function app(people){
   }
 }
 
-function searchByEyeColor() {
-var searchByEyeColor;
-var eyeColor;
 
-var informationForSearch;
-var userInput = informationForSearch;
-userInput = prompt ("Would you like to search by eye color? Enter 'yes' or 'no.'").toLowerCase();
-	if (userInput !== "yes" && userInput !== "no") {
-		userInput = prompt ("Do you know the eye color of the person for whom you are seaching? Enter 'yes' or 'no'.").toLowerCase();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function searchByEyeColor(people) {
+	var userInput =  prompt ("What is the eye color of the person for whom you are searching?");
+
+	var findPeople = [];
+	for (var i = 0; i < people.length; i++) {
+		if (userInput === people[i].eyeColor) {
+			findPeople.push(people[i]);
+		}
 	}
-	else if (userInput === "no"){
-	}//new search criteria
-	else if (userInput === "yes") {
-		var eyeColor = prompt ("Are the person's eyes black, blue, brown, green, or hazel?").toLowerCase(); 
-		while (eyeColor === "Brown") {
-		console.log("Searching for people with brown eyes");
-		} //next prompt or name choices
-		if (eyeColor === "Black") {
-		console.log("Searching for people with black eyes");
-		} //next prompt or name choies
-		else if (eyeColor === "Blue") {
-		console.log("Searching for people with blue eyes");
-		} //next prompt or name choices
-		else if (eyeColor === "Green") {
-		console.log("Searching for people with green eyes");
-		} //next prompt or name choices
-		else if (eyeColor === "Hazel") {
-		console.log("Searching for people with hazel eyes");
-		} //next prompt or name choices
+	return findPeople;
 }
+
 searchByEyeColor();
+}
 
 
+function searchByWeight(people) {
+	var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
+
+	var findPeople = [];
+	for (var i = 0; i < people.length; i++) {
+		if (userInput === people[i].weight) {
+			findPeople.push(people[i]);
+		}
+	}
+	return findPeople;
+}
+
+searchByHeight ();
+function searchByHeight(people) {
+	var userInput =  prompt ("In inches, what is the height of the person for whom you are searching?");
+
+	var findPeople = [];
+	for (var i = 0; i < people.length; i++) {
+		if (userInput === people[i].height) {
+			findPeople.push(people[i]);
+		}
+	}
+	return findPeople;
+}
+
+searchByHeight();
 
 
 function doYouKnowAge(dob){

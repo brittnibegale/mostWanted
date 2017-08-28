@@ -10,8 +10,6 @@ function searchByEyeColor(people) {
 	return findPeople;
 }
 
-searchByEyeColor();
-
 
 function searchByWeight(people) {
 	var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
@@ -25,7 +23,6 @@ function searchByWeight(people) {
 	return findPeople;
 }
 
-searchByHeight ();
 function searchByHeight(people) {
 	var userInput =  prompt ("In inches, what is the height of the person for whom you are searching?");
 
@@ -37,6 +34,3 @@ function searchByHeight(people) {
 	}
 	return findPeople;
 }
-
-searchByHeight();
-

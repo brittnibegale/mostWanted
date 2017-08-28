@@ -39,12 +39,7 @@ function searchByName(people){
     return myResult;
 }
 
-<<<<<<< HEAD
 
-
-=======
-//////////////////////////////////////////////////////////////////////////////////////////////////////
->>>>>>> 4e6db5b9baa08d1e37353ebe5b18179fee0f9574
 
 function searchByTrait(people){
   var seachByTraitUserInput = promptFor("Which trait would you like to search by? eye color or gender or weight or height or occupation or age", chars).toLowerCase();
@@ -211,7 +206,6 @@ function getAge(dob) {
    return age;
 }
 
-<<<<<<< HEAD
 function matchAge(dob){
    var personsAge = getAge();
    if (personsAge == searchByAge()){
@@ -221,7 +215,7 @@ function matchAge(dob){
 
 
 
-=======
+
 // function matchAge(dob){
 //    var personsAge = getAge();
 //    if (personsAge == searchByAge()){ //////////////////////////////not sure if we actually need this/////////////
@@ -229,10 +223,11 @@ function matchAge(dob){
 //    }
 // }
 ////////////////////////////////////////////////////////////////////////
->>>>>>> 4e6db5b9baa08d1e37353ebe5b18179fee0f9574
+
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
+
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
@@ -269,6 +264,45 @@ function displayPeople(people){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
+
+
+
+  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
+
+  if(!person){
+    alert("Could not find that individual.");
+    return app(people); // restart
+  }
+
+  var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'").toLowerCase();
+
+  switch(displayOption){
+    case "info":
+    displayPerson(person);
+    break;
+    case "family":
+    // TODO: get person's family
+    break;
+    case "descendants":
+    listOfDescendants(people);
+    break;
+    case "restart":
+    app(people); // restart
+    break;
+    case "quit":
+    return; // stop execution
+    default:
+    return mainMenu(person, people); // ask again
+  }
+}
+
+// alerts a list of people
+function displayPeople(people){
+  alert(people.map(function(person){
+    return person.firstName + " " + person.lastName;
+  }).join("\n"));
+}
+
 
 function displayPerson(person){
   var personInfo = "First Name: " + person.firstName + "\n";

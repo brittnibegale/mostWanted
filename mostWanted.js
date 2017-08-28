@@ -223,7 +223,7 @@ function comparingUserInputHeightToData (){
    var heightInput = promptFor("What is their height in inches? Whole numbers only please.");
 
    people.filter(function (el){
-  if (el.height === occupationInput){
+  if (el.height === heightInput){
 
     return true;
   }

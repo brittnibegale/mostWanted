@@ -1,36 +1,18 @@
-function searchByEyeColor(people) {
-	var userInput =  prompt ("What is the eye color of the person for whom you are searching?");
 
-	var findPeople = [];
-	for (var i = 0; i < people.length; i++) {
-		if (userInput === people[i].eyeColor) {
-			findPeople.push(people[i]);
-		}
-	}
-	return findPeople;
-}
+function firstGeneration(person) {
+var descendants = [];
+var person = 
+var children = people.filter(function (el){
+	
+  if (el.parents [0] === person.id || el.parents [1] === person.id) { // check data type of parents for how to reference
+	return true;
+  }
+  
+});
 
-
-function searchByWeight(people) {
-	var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
-
-	var findPeople = [];
-	for (var i = 0; i < people.length; i++) {
-		if (userInput === people[i].weight) {
-			findPeople.push(people[i]);
-		}
-	}
-	return findPeople;
-}
-
-function searchByHeight(people) {
-	var userInput =  prompt ("In inches, what is the height of the person for whom you are searching?");
-
-	var findPeople = [];
-	for (var i = 0; i < people.length; i++) {
-		if (userInput === people[i].height) {
-			findPeople.push(people[i]);
-		}
-	}
-	return findPeople;
+  return children;
+  descendants.push(children);
+  
+var grandchildren;	
+	
 }

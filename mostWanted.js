@@ -36,7 +36,9 @@ function searchByName(people){
   }
   return myResult;
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 function searchByTrait(people){
   var seachByTraitUserInput = promptFor("Which trait would you like to search by? eye color or weight or height or occupation or age", chars).toLowerCase();
@@ -136,7 +138,9 @@ function matchAge(dob){
      return true;
    }
 }
-////////////////////////////////////////////////////////////////////////
+
+
+
 
 // Menu function to call once you find who you are looking for
 // function mainMenu(person, people){
@@ -207,3 +211,87 @@ function chars(input){
 
  
 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ //search by gender
+ 
+ function searchByGender(people) {
+	var userInput =  prompt ("What is the gender of the person for whom you are searching?");
+
+	var findPeople = [];
+	for (var i = 0; i < people.length; i++) {
+		if (userInput === people[i].gender) {
+			findPeople.push(people[i]);
+		}
+	}
+	return searchByGender(people);
+}

@@ -21,100 +21,83 @@ Build all of your functions for displaying and gathering information below
 //     break;
 //   }
 // }
+// app is the function called to start the entire application
+// function app(people){
+//   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
+//     switch(searchType){
+//     case 'yes':
+//     var name = searchByName(people);
+//     if (name === true){
+//     console.log(name);
+//     }
+//     else{
+//       alert("That was not a name person in our database. Let's try searching by traits.")
+//       searchByTrait(people);
+//     }
+//     break;
+//     case 'no':
+//     searchByTrait(people);
+//     break;
+//     default:
+//     app(people); // restart app
+//     break;
+//   }
+// }
 
-// function searchByEyeColor() {
-// var searchByEyeColor;
-// var eyeColor;
+// function searchByName(people){
+//   var firstName = promptFor("What is the person's first name?", chars).toUpperCase(0);
+//   var lastName = promptFor("What is the person's last name?", chars).toUpperCase(0);
+  
+//   var myResult = people.filter(function (el)){
+//   if (el.firstName === firstName && el.lastName === lastName){
+//     return true; 
+//   }
+//   return myResult;
+// }
 
-// var informationForSearch;
-// var userInput = informationForSearch;
-// userInput = prompt ("Would you like to search by eye color? Enter 'yes' or 'no.'").toLowerCase();
-// 	if (userInput !== "yes" && userInput !== "no") {
-// 		userInput = prompt ("Do you know the eye color of the person for whom you are seaching? Enter 'yes' or 'no'.").toLowerCase();
+// function searchByTrait(people){
+//   var seachByTraitUserInput = promptFor("Which trait would you like to search by? eye color or weight or height or occupation or age", chars).toLowerCase();
+//   switch(seachByTraitUserInput){
+//     case 'eye color':
+//     var personsEyeColor = searchByEyeColor(people);
+//     break;
+//     case 'weight':
+//     var personsWeight = searchByWeight(people);
+//     break;
+//     case 'height':
+//     var personsHeight = searchByHeight(people);
+//     break;
+//     case 'occupation' 
+//     var personsOccupation = searchByOccupation(people);
+//     break;
+//     case 'age' 
+//     var personsAge = seachByAge(people);//remember to change age to this 
+//     break;
+//     default:
+//     searchByTrait(people);
+//     break;
+//   }
+// }
+
+// function searchByEyeColor(people) {
+// 	var userInput =  prompt ("What is the eye color of the person for whom you are searching?");
+
+// 	var findPeople = [];
+// 	for (var i = 0; i < people.length; i++) {
+// 		if (userInput === people[i].eyeColor) {
+// 			findPeople.push(people[i]);
+// 		}
 // 	}
-// 	else if (userInput === "no"){
-// 	}//new search criteria
-// 	else if (userInput === "yes") {
-// 		var eyeColor = prompt ("Are the person's eyes black, blue, brown, green, or hazel?").toLowerCase(); 
-// 		while (eyeColor === "Brown") {
-// 		console.log("Searching for people with brown eyes");
-// 		} //next prompt or name choices
-// 		if (eyeColor === "Black") {
-// 		console.log("Searching for people with black eyes");
-// 		} //next prompt or name choies
-// 		else if (eyeColor === "Blue") {
-// 		console.log("Searching for people with blue eyes");
-// 		} //next prompt or name choices
-// 		else if (eyeColor === "Green") {
-// 		console.log("Searching for people with green eyes");
-// 		} //next prompt or name choices
-// 		else if (eyeColor === "Hazel") {
-// 		console.log("Searching for people with hazel eyes");
-// 		} //next prompt or name choices
+// 	return findPeople;
 // }
-// searchByEyeColor();
-
-
-
-
-// function doYouKnowAge(dob){ 
-//   var ageSearch = dob.split("/");
-//   var yearBorn = "";
-//   var age = ageSearch[2];
-//   var usersCall = searchInfo;
-//   usersCall = prompt("Do you want to search by age? Please enter 'Yes' or 'No'.").toLowerCase();
-//     if (usersCall !== "Yes" !== "No"){
-//       userCall = prompt("Have you any idea of how old the person is? Pleae enter 'Yes' or 'No'.").toLowerCase();
-//     }
-//     else if (usersCall == "Yes"){
-//       var birthYear = prompt("Can you give an idea of when the person was born?").toLowerCase();
-//       while (birthYear <== "1940"){
-//       console.log("Returning people born before 1940");
-//       }
-//       if (birthYear <== "1950"){
-//       console.log("Returning people born between 1940 and 1950");
-//       }
-//       else if (birthYear <== "1960"){
-//       console.log("Returning people born between 1950 and 1960");
-//       }
-//       else if (birthYear <== "1970"){
-//       console.log("Returning people born between 1960 and 1970");
-//       }
-//       else if (birthYear <== "1980"){
-//       console.log("Returning people born between 1970 and 1980");
-//       }
-//       else if (birthYear <=="1990"){
-//       console.log("Returning people born between 1980 and 1990");
-//       }
-//     else if (usersCall == "No"){
-//     }
-
-//     }// fix braket error here
-//     return age;
-// }
-// //why dont we just use filter on this?
-// doYouKnowAge();// we should try and figure out a differnt way to call this other than a global call for each
-
-
-function searchByEyeColor(people) {
-	var userInput =  prompt ("What is the eye color of the person for whom you are searching?");
-
-	var findPeople = [];
-	for (var i = 0; i < people.length; i++) {
-		if (userInput === people[i].eyeColor) {
-			findPeople.push(people[i]);
-		}
-	}
-	return findPeople;
-}
 
 // searchByEyeColor();
 // }
 
 
-function searchByWeight(people) {
-	var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
-}
+// function searchByWeight(people) {
+// 	var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
+// }
 
 function ageSearch(people){
   var inputAge = prompt("Please type the person's age.", chars).toLowerCase();
@@ -157,6 +140,18 @@ function matchAge(dob){
 // }
 
 searchByHeight ();
+function searchByWeight(people) {
+	var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
+  var findPeople = [];
+  for (var i = 0; i < people.length; i++){
+    if (userInput === people [i].weight){
+      findPeople.push(people[i]);
+    }
+  }
+  return findPeople;
+}
+
+
 function searchByHeight(people) {
 	var userInput =  prompt ("In inches, what is the height of the person for whom you are searching?");
 
@@ -169,39 +164,9 @@ function searchByHeight(people) {
 	return findPeople;
 }
 
-searchByHeight();
-
-
-function doYouKnowAge(dob){
-  var ageSearch = dob.split("/");
-  var yearBorn = "";
-  var age = ageSearch[2];
-  var usersCall = searchInfo;
-  usersCall = promptFor("Do you want to search by age? Please enter 'Yes' or 'No'.", chars());
-    if (usersCall !== "yes"){
-      var birthYear = prompt("Can you give an idea of when the person was born?").toLowerCase();
-  }
-}
-doYouKnowAge();
-
-function doTheyKnowOccupationObject (){
-	var occupationYesNoUserInput = promptFor("Do you know their occupation? yes or no", chars);
-	var occupationYesNo = yesNo(occupationYesNoUserInput);
-
-  if (occupationYesNo === "yes"){
-    comparingUserInputOccupationToData();
-  }
-
-  else{
-    // enter in function that prompts for next question
-  }
-	
-}
-
-function comparingUserInputOccupationToData (){
+function searchByOccupation(people){
   var occupationInput = promptFor("What is their occupation?", chars).toLowerCase();
-// do I need to send it to promptFor?
-    people.filter(function (el){
+  var myResults = people.filter(function (el){
   if (el.occupation === occupationInput){
     return true;// where is this returning to?
   }
@@ -228,13 +193,45 @@ function comparingUserInputHeightToData (){
 
    people.filter(function (el){
   if (el.height === occupationInput){
+
     return true;
   }
+  return myResults;
 });
 }
 
+function searchByAge(people){
+ var inputAge = prompt("Please type the person's age.", chars).toLowerCase();
+ var theResults = people.filter(function(el){
+   var personAge = getAge(el.dob);
+   if (personAge === inputAge){
+     return true;
+   }
+ });
+ console.log(theResults);
+ searchByAge(people);
+ return theResults;
+}
+function getAge(dob) {
+   var today = new Date();
+   var birthDate = new Date(dob);
+   var age = today.getFullYear() - birthDate.getFullYear();
+   var m = today.getMonth() - birthDate.getMonth();
+   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+       age--;
+   }
+   return age;
+}
 
+function matchAge(dob){
+   var personsAge = getAge();
+   if (personsAge == searchByAge()){
+     return true;
+   }
+}
+////////////////////////////////////////////////////////////////////////
 
+// Menu function to call once you find who you are looking for
 // function mainMenu(person, people){
 
 //   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
@@ -264,16 +261,6 @@ function comparingUserInputHeightToData (){
 //     default:
 //     return mainMenu(person, people); // ask again
 //   }
-// }
-
-// function searchByName(people){
-//   var firstName = promptFor("What is the person's first name?", chars);
-//   var lastName = promptFor("What is the person's last name?", chars);
-	
-// 	people.filter(function (el)){
-// 	if (el.firstName === firstName && el.lastName === lastName){
-// 		return true; //where is this returning to?
-// 	}
 // }
 
 // // alerts a list of people

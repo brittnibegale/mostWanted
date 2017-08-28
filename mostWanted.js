@@ -184,6 +184,18 @@ function searchByOccupation(people){
    return myResults;
 }
 
+ function searchByGender(people) {
+  var userInput =  prompt ("What is the gender of the person for whom you are searching?");
+
+  var findPeople = [];
+  for (var i = 0; i < people.length; i++) {
+    if (userInput === people[i].gender) {
+      findPeople.push(people[i]);
+    }
+  }
+  return searchByGender(people);
+}
+
 function searchByAge(people){
  var inputAge = prompt("Please type the person's age.", chars).toLowerCase();
  var myResults = people.filter(function(el){
@@ -406,17 +418,3 @@ function chars(input){
  
  
  
- 
- //search by gender
- 
- function searchByGender(people) {
-	var userInput =  prompt ("What is the gender of the person for whom you are searching?");
-
-	var findPeople = [];
-	for (var i = 0; i < people.length; i++) {
-		if (userInput === people[i].gender) {
-			findPeople.push(people[i]);
-		}
-	}
-	return searchByGender(people);
-}

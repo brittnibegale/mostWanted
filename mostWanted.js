@@ -30,19 +30,22 @@ function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars).toUpperCase(0);
   var lastName = promptFor("What is the person's last name?", chars).toUpperCase(0);
   
-  var myResult = people.filter(function (el)){
+  var myResult = people.filter(function (el){
   if (el.firstName === firstName && el.lastName === lastName){
     return true; 
   }
   return myResult;
+  });
 }
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function searchByTrait(people){
   var seachByTraitUserInput = promptFor("Which trait would you like to search by? eye color or weight or height or occupation or age", chars).toLowerCase();
+  var passingInformation;
   switch(seachByTraitUserInput){
     case 'eye color':
-    var personsEyeColor = searchByEyeColor(people);
+    passingInformation = searchByEyeColor(people);
     break;
     case 'weight':
     var personsWeight = searchByWeight(people);
@@ -50,16 +53,17 @@ function searchByTrait(people){
     case 'height':
     var personsHeight = searchByHeight(people);
     break;
-    case 'occupation' 
+    case 'occupation': 
     var personsOccupation = searchByOccupation(people);
     break;
-    case 'age' 
-    var personsAge = seachByAge(people);//remember to change age to this 
+    case 'age': 
+    var personsAge = seachByAge(people);
     break;
     default:
     searchByTrait(people);
     break;
   }
+
 }
 
 function searchByEyeColor(people) {
@@ -104,8 +108,9 @@ function searchByOccupation(people){
   if (el.occupation === occupationInput){
     return true;
   }
-  return myResults;
-});
+  });
+   return myResults;
+}
 
 function searchByAge(people){
  var inputAge = prompt("Please type the person's age.", chars).toLowerCase();
@@ -116,9 +121,9 @@ function searchByAge(people){
    }
  });
  console.log(theResults);
- searchByAge(people);
  return theResults;
 }
+
 function getAge(dob) {
    var today = new Date();
    var birthDate = new Date(dob);
@@ -130,12 +135,12 @@ function getAge(dob) {
    return age;
 }
 
-function matchAge(dob){
-   var personsAge = getAge();
-   if (personsAge == searchByAge()){
-     return true;
-   }
-}
+// function matchAge(dob){
+//    var personsAge = getAge();
+//    if (personsAge == searchByAge()){
+//      return true;
+//    }
+// }
 ////////////////////////////////////////////////////////////////////////
 
 // Menu function to call once you find who you are looking for
@@ -203,6 +208,7 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
+
 
 
  

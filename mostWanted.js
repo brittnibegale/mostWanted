@@ -3,24 +3,24 @@
 Build all of your functions for displaying and gathering information below 
 */
 
-// app is the function called to start the entire application
-function app(people){
-  var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
-  if (userEntry !== "yes" && userEntry !== "no"){
-    userEntry = prompt ("Do you know the name of the person you are looking for? Please enter 'yes' or 'no'.").toLowerCase();
-  }//why do we have two of these statements "do you know the name....?"?
-  switch(searchType){
-    case 'yes':
-    searchByName(people);//TODO: search by name
-    break;
-    case 'no':
-    doTheyKnowOccupationObject();
-    break;
-    default:
-    app(people); // restart app
-    break;
-  }
-}
+// // app is the function called to start the entire application
+// //function app(people){
+//   //var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
+//   //if (userEntry !== "yes" && userEntry !== "no"){
+//     //userEntry = prompt ("Do you know the name of the person you are looking for? Please enter 'yes' or 'no'.").toLowerCase();
+//   }//why do we have two of these statements "do you know the name....?"?
+//   //switch(searchType){
+//     //case 'yes':
+//     //searchByName(people);//TODO: search by name
+//     //break;
+//     //case 'no':
+//     //doTheyKnowOccupationObject();
+//     //break;
+//     //default:
+//     app(people); // restart app
+//     break;
+//   }
+// }
 
 // function searchByEyeColor() {
 // var searchByEyeColor;
@@ -108,37 +108,53 @@ function searchByEyeColor(people) {
 	return findPeople;
 }
 
-searchByEyeColor();
-}
+// searchByEyeColor();
+// }
 
 
 function searchByWeight(people) {
 	var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
 }
 
+function ageSearch(people){
+  var inputAge = prompt("Please type the person's age.", chars).toLowerCase();
+  var theResults = people.filter(function(el){
+    var personAge = getAge(el.dob);
+    if (personAge === inputAge){
+      return true;
+    } 
+  });
+  console.log(theResults);
+  return theResults;
+} 
+ageSearch();
+
  function getAge(dob) {
-    var findAge = doYouKnowAge();
     var today = new Date();
-    var birthDate = findAge;
+    var birthDate = new Date(dob);
     var age = today.getFullYear() - birthDate.getFullYear();
     var m = today.getMonth() - birthDate.getMonth();
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
         age--;
     }
     return age;
-} getAge();
-
-function doYouKnowAge(){//function for prompting the user to get the age of the person
-  var usersCall = promptFor("Do you know the age of the age of the person?");
-
-	var findPeople = [];
-	for (var i = 0; i < people.length; i++) {
-		if (userInput === people[i].weight) {
-			findPeople.push(people[i]);
-		}
-	}
-	return findPeople;
 }
+
+function matchAge(dob){
+    var personsAge = getAge();
+    if (personsAge == doYouKnowAge()){
+      return true;
+    }
+}
+
+// 	var findPeople = [];
+// 	for (var i = 0; i < people.length; i++) {
+// 		if (userInput === people[i].weight) {
+// 			findPeople.push(people[i]);
+// 		}
+// 	}
+// 	return findPeople;
+// }
 
 searchByHeight ();
 function searchByHeight(people) {
@@ -192,6 +208,7 @@ function comparingUserInputOccupationToData (){
 
 //  how do I do an else statement that will re-prompt or alert !people or is it only at the end of building the "person" that we alert not a person
 });
+}
 // Menu function to call once you find who you are looking for
 
 function doTheyKnowTheirHeight (){
@@ -214,6 +231,7 @@ function comparingUserInputHeightToData (){
     return true;
   }
 });
+}
 
 
 
@@ -292,10 +310,9 @@ function chars(input){
   return true; // default validation only
 }
 
-function dataBaseRun(){
-  app(people);
-  var myReslut = people.filter(function (el){[]}
+// function dataBaseRun(){
+//   app(people);
+//   var myReslut = people.filter(function (el){[]}
 
-}
-dataBaseRun();
 
+// dataBaseRun();

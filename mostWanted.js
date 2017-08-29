@@ -177,7 +177,7 @@ function searchByTrait(people){
               searchByTrait(people);
             }
         }
-    default: // see if this runs smoothly
+    default:	
     var nextTraitSearch = prompt("Would you like to keep searching traits? yes or no", yesNo).toLowerCase();
       if (nextTraitSearch === "yes"){
         searchByTrait(peoplesTraitInformation);
@@ -191,20 +191,20 @@ function searchByTrait(people){
 }
 
 function searchByEyeColor(people) {
-	var userInput =  prompt ("What is the eye color of the person for whom you are searching?");
+  var userInput =  prompt ("What is the eye color of the person for whom you are searching?");
 
-	var myResults = [];
-	for (var i = 0; i < people.length; i++) {
-		if (userInput === people[i].eyeColor) {
-			myResults.push(people[i]);
-		}
-	}
-	return myResults;
+  var findPeople = [];
+  for (var i = 0; i < people.length; i++) {
+    if (userInput === people[i].eyeColor) {
+      findPeople.push(people[i]);
+    }
+  }
+  return findPeople;
 }
 
 function searchByWeight(people) {
-	var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
-  var myResults = [];
+  var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
+  var findPeople = [];
   for (var i = 0; i < people.length; i++){
     if (userInput === people [i].weight){
       myResults.push(people[i]);
@@ -385,6 +385,27 @@ function listOfFamily(person, people){
  
  
  
+ function listOfDescendants(person, people) {
+	var children = people.filter(function (el) {
+
+		for (var i = 0; i < el.parents.length; i++) {
+			if (el.parents[i] === person.id) {
+				return true;
+			}
+		}
+	});	
+
+	for (var i = 0; i < children.length; i++) {
+		children = children.concat(listOfDescendants(children[i], people));
+	}
+	
+	return children;
+	
+}
+
+var test = listOfDescendants(allPeople[8], allPeople);
+
+console.log(test);
  
  
  
@@ -424,5 +445,16 @@ function listOfFamily(person, people){
  
  
  
+ //search by gender
  
- 
+ function searchByGender(people) {
+	var userInput =  prompt ("What is the gender of the person for whom you are searching?");
+
+	var findPeople = [];
+	for (var i = 0; i < people.length; i++) {
+		if (userInput === people[i].gender) {
+			findPeople.push(people[i]);
+		}
+	}
+	return searchByGender(people);
+}

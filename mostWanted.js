@@ -241,7 +241,7 @@ function searchByOccupation(people){
 }
 
  function searchByGender(people) {
-  var userInput =  promptFor("What is the gender of the person for whom you are searching?", chars).toLowerCase();
+  var userInput =  prompt ("What is the gender of the person for whom you are searching?", chars).toLowerCase();
   var myResults = [];
   for (var i = 0; i < people.length; i++) {
     if (userInput === people[i].gender) {
@@ -252,9 +252,9 @@ function searchByOccupation(people){
 }
 
 function searchByAge(people){
- var inputAge = promptFor("In years, what is the age of the person for whom you are searching?", chars);
- var inputAge = promptFor("Please type the person's age.", chars);
- var inputAge = promptFor ("In years, what is the age of the person for whom you are searching?", chars);
+ var inputAge = prompt ("In years, what is the age of the person for whom you are searching?", chars);
+ // var inputAge = promptFor("Please type the person's age.", chars);
+// var inputAge = promptFor ("In years, what is the age of the person for whom you are searching?", chars);
 }
 
 function getAge(dob) {
@@ -284,11 +284,11 @@ function mainMenu(person, people){
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
   if(!person){
-    alert("Could not find that individual.");
+    alert("Sorry, there are no individuals with that name in the database.");
     return app(people); // restart
   }
 
-  var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'").toLowerCase();
+  var displayOption = prompt("+ person.firstName + " " + person.lastName + " . Would you like to view " + person.firstName + " " + person.lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'").toLowerCase();
 
   switch(displayOption){
     case "info":

@@ -317,20 +317,25 @@ function listOfFamily(person, people){
     var listSiblings = findSiblings(person, people);
     var personsId = findId(person, people);
     var parentsId = findId(listofParents, people);
-    var listOfChildren = findChildren(personsId, people);
+    var listOfChildren = listOfDescendants(personsId, people);
 }
 
 function findSpouse(person, people){
  var myResult = people.filter(function(el){
-        if (el.spouse === person.id){
+        if (el.currentSpouse === person.id){
             return true;
           }
     });
 }
 
 function findParents(person, people){//findparents
-  
-}
+  var parents = people.filter(function(el){
+      if (el.people.parents === el.person.parents){
+        return true;
+      }
+    });
+  }
+   
 
 
 function findId(person, people){

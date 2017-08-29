@@ -47,7 +47,7 @@ function creatingFirstAndLastNameOnly(peoplesTraitInformation, people){
 }
 
 function refiningTraitSearch(peoplesTraitInformation, people){
-  var refiningSearch = promptFor("Would you like to add additional criteria to your search? Please enter yes or no", yesNo).toLowerCase();
+  var refiningSearch = promptFor("Would you like to add additional criteria to your search? Please enter: yes or no", yesNo).toLowerCase();
         if (refiningSearch === "yes"){
           searchByTrait(peoplesTraitInformation);
         }

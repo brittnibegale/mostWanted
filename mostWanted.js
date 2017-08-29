@@ -53,7 +53,7 @@ function refiningTraitSearch(peoplesTraitInformation, people){
         }
         else if (refiningSearch === "no" && peoplesTraitInformation.length > 1){
           var namesOfCurrentSearch = creatingFirstAndLastNameOnly(peoplesTraitInformation, people);
-          var choseOnePersonFromArray = promptFor("You have too many people in search." + "\n" + namesOfCurrentSearch + "\n" + "Would you like to know more about one of these people's information, family, or descendants? yes or no", yesNo).toLowerCase();
+          var choseOnePersonFromArray = promptFor("Your past search(es) have provided these people who meet your search criteria:" + "\n" + namesOfCurrentSearch + "\n" + "\n" + "Would you like to know more about one of these person's information, family, or descendants? yes or no", yesNo).toLowerCase();
           if (choseOnePerson === "yes"){
             var chosenPerson = searchByName(people);
             mainMenu(chosenPerson , people);

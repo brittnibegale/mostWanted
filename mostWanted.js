@@ -39,40 +39,152 @@ function searchByName(people){
     return myResult;
 }
 
+// function creatingFirstAndLastNameOnly(peoplesTraitInformation,people){
+//   for (i = 0; i < peoplesTraitInformation.length; i++){
+//           var personInfo = "First Name: " + peoplesTraitInformation.firstName + "\n";
+//           personInfo += "Last Name: " + peoplesTraitInformation.lastName + "\n";
+//           personInfo.push(listOfFirstAndLastName);
+//           var listOfFirstAndLastName = "";
+//   }
+//     return listOfFirstAndLastName;
+// }
 
+function creatingFirstAndLastNameOnly(peoplesTraitInformation,people){
+  (people.map(function(peoplesTraitInformation){
+    return peoplesTraitInformation.firstName + " " + peoplesTraitInformation.lastName;
+  }).join("\n"));
+}
+
+function refiningTraitSearch(peoplesTraitInformation, people){
+  var refiningSearch = promptFor("Would you like to refine your search by trait more?", yesNo).toLowerCase();
+        if (refiningSearch === "yes"){
+          searchByTrait(peoplesTraitInformation);
+        }
+        else if (refiningSearch === "no" && peoplesTraitInformation.length > 1){
+          var namesOfCurrentSearch = creatingFirstAndLastNameOnly(peoplesTraitInformation, people);
+          var choseOnePersonFromArray = promptFor("You have too many people in search." + namesOfCurrentSearch + "Would you like to know more about one of these people's information, family, or descendants? yes or no", yesNo).toLowerCase();
+          if (choseOnePerson === "yes"){
+            var chosenPerson = searchByName(people);
+            mainMenu(chosenPerson , people);
+          }
+            else{
+              alert("We hope our database has helped you find the person you were looking for. Have a great day!")
+              app(people);
+            }
+        }
+        else{
+          displayPeople(peoplesTraitInformation);
+          mainMenu(peoplesTraitInformation , people)
+        }
+}
 
 function searchByTrait(people){
   var seachByTraitUserInput = promptFor("Which trait would you like to search by? eye color or gender or weight or height or occupation or age", chars).toLowerCase();
-  var traitInformation = [];// ask if this should be an array or just an open variable
+  var peoplesTraitInformation = [];// ask if this should be an array or just an open variable
   switch(seachByTraitUserInput){
     case 'eye color':
-		traitInformation = searchByEyeColor(people);
-		break;
+    var peoplesEyeColorSearch = searchByEyeColor(people);
+      if (Array.isArray(peoplesEyeColorSearch) === true){
+        peoplesTraitInformation = peoplesEyeColorSearch;
+        var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
+      }
+      else {
+        var notAnEyeColor = promptFor("That was not an eye color that matched a person in our database. Would you like to re-try entering the person's eye color? yes or no", yesNo).toLowerCase();
+          if (notAnEyeColor === 'yes'){
+            searchByEyeColor(people);
+          }
+            else{
+              searchByTrait(people);
+            }
+      }
+    break;
     case 'weight':
-      traitInformation = searchByWeight(people);
+    var peoplesWeightSearch = searchByWeight(people);
+    if (Array.isArray(peoplesWeightSearch) === true){
+      peoplesTraitInformation = peoplesWeightSearch;
+      var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
+      }
+      else {
+        var notAWeight = promptFor("That was not a weight that matched a person in our database. Would you like to re-try entering the person's weight? yes or no", yesNo).toLowerCase();
+          if (notAWeight === 'yes'){
+            searchByWeight(people);
+          }
+            else{
+              searchByTrait(people);
+            }
+      }
     break;
     case 'height':
-    if (searchByHeight === true){
-      traitInformation = searchByHeight(people);
+    var peoplesHeightSearch = searchByHeight(people);
+    if (Array.isArray(peoplesHeightSearch) === true){
+      peoplesTraitInformation = peoplesHeightSearch;
+      var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
+      }
+      else {
+        var notAHeight = promptFor("That was not a height that matched a person in our database. Would you like to re-try entering the person's height? yes or no", yesNo).toLowerCase();
+          if (notAHeight === 'yes'){
+            searchByHeight(people);
+          }
+            else{
+              searchByTrait(people);
+            }
+      }
     break;
     case 'occupation': 
-    if (searchByOccupation === true){
-     traitInformation = searchByOccupation(people);
+    var peoplesOccupationSearch = searchByOccupation(people);
+    if (Array.isArray(peoplesOccupationSearch) === true){
+     peoplesTraitInformation = peoplesOccupationSearch;
+     var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
+      }
+      else {
+        var notAnOccupation = promptFor("That was not an occupation that matched a person in our database. Would you like to re-try entering the person's occupation? yes or no", yesNo).toLowerCase();
+          if (notAnOccupation === 'yes'){
+            searchByOccupation(people);
+          }
+            else{
+              searchByTrait(people);
+            }
+      }
     break;
     case 'age': 
-    if (searchByAge === true){
-     traitInformation = searchByAge(people);
+    var peoplesAgeSearch = searchByAge(people);
+    if (Array.isArray(peoplesAgeSearch) === true){
+     peoplesTraitInformation = peoplesAgeSearch;
+     var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
+      }
+      else {
+        var notAnAge = promptFor("That was not an age that matched a person in our database. Would you like to re-try entering the person's age? yes or no", yesNo).toLowerCase();
+          if (notAnAge === 'yes'){
+            searchByAge(people);
+          }
+            else{
+              searchByTrait(people);
+            }
+      }
     break;
     case 'gender':
-      if (searchByGender === true){
-        traitInformation = searchByGender(people);
-    default:
+    var peoplesGenderSearch = searchByGender(people);
+      if (Array.isArray(peoplesGenderSearch) === true){
+        peoplesTraitInformation = peoplesGenderSearch;
+        var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
+      } 
+        else {
+          var notAGender = promptFor ("That was not a gender that matched a person in our database. Would you like ot re-try entering the person's gender? yes or no", yesNo).toLowerCase();
+          if (notAGender === 'yes'){
+            searchByGender(people);
+          }
+            else {
+              searchByTrait(people);
+            }
+        }
+    default:	
     var nextTraitSearch = prompt("Would you like to keep searching traits? yes or no", yesNo).toLowerCase();
       if (nextTraitSearch === "yes"){
-        searchByTrait(traitInformation);
+        searchByTrait(peoplesTraitInformation);
+        var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
       }
       else{
-        mainMenu(traitInformation, people);
+        mainMenu(peoplesTraitInformation, people);
       }
     break;
   }
@@ -133,7 +245,11 @@ function searchByOccupation(people){
 }
 
 function searchByAge(people){
+<<<<<<< HEAD
  var inputAge = prompt("In years, what is the age of the person for whom you are searching?");
+=======
+ var inputAge = prompt("Please type the person's age.", chars);
+>>>>>>> 7daa4e1976b23b6b24c8c09e30e76f06cd531de7
  var myResults = people.filter(function(el){
    var personAge = getAge(el.dob);
     if (personAge === inputAge){
@@ -153,16 +269,6 @@ function getAge(dob) {
    }
    return age;
 }
-
-function matchAge(dob){
-   var personsAge = getAge();
-   if (personsAge == searchByAge()){
-     return true;
-   }
-}
-
-
-
 
 // function matchAge(dob){
 //    var personsAge = getAge();
@@ -191,10 +297,11 @@ function mainMenu(person, people){
     displayPerson(person);
     break;
     case "family":
-    // TODO: get person's family
+    return myResults;
+    listOfFamily(person);// TODO: get person's family
     break;
     case "descendants":
-    listOfDescendants(people);
+    listOfDescendants(person);
     break;
     case "restart":
     app(people); // restart
@@ -206,51 +313,43 @@ function mainMenu(person, people){
   }
 }
 
+function listOfFamily(person, people){
+    var listSpouse = findSpouse(person, people);
+    var listParents = findParents(person, people);
+    var listSiblings = findSiblings(person, people);
+    var personsId = findId(person, people);
+    var parentsId = findId(listofParents, people);
+    var listOfChildren = findChildren(personsId, people);
+}
+
+function findSpouse(person, people){
+ var myResult = people.filter(function(el){
+        if (el.spouse === person.id){
+            return true;
+          }
+    });
+}
+
+function findParents(person, people){//findparents
+  
+}
+
+
+function findId(person, people){
+    var idSearch = []
+        for (var i = 0; i < people.length; i++){
+            if (displayOption === people[i]; i++){
+          idSearch.push(people[i]);
+        }
+      }
+    }
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
-
-
-
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
-
-  if(!person){
-    alert("Could not find that individual.");
-    return app(people); // restart
-  }
-
-  var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'").toLowerCase();
-
-  switch(displayOption){
-    case "info":
-    displayPerson(person);
-    break;
-    case "family":
-    // TODO: get person's family
-    break;
-    case "descendants":
-    listOfDescendants(people);
-    break;
-    case "restart":
-    app(people); // restart
-    break;
-    case "quit":
-    return; // stop execution
-    default:
-    return mainMenu(person, people); // ask again
-  }
-}
-
-// alerts a list of people
-function displayPeople(people){
-  alert(people.map(function(person){
-    return person.firstName + " " + person.lastName;
-  }).join("\n"));
-}
-
 
 function displayPerson(person){
   var personInfo = "First Name: " + person.firstName + "\n";
@@ -280,7 +379,9 @@ function chars(input){
   return true; 
 }
 
+function listOfFamily(person, people){
 
+}
 
  
 

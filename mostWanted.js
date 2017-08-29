@@ -328,7 +328,7 @@ function findSpouse(person, people){
     });
 }
 
-function findParents(person, people){
+function findParents(person, people){//findparents
   
 }
 

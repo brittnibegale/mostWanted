@@ -311,6 +311,7 @@ function displayPerson(person){
 }
 
  function listOfDescendants(person, people) {
+
   var children = people.filter(function (el) {
     for (var i = 0; i < el.parents.length; i++) {
       if (el.parents[i] === person.id) {
@@ -386,8 +387,6 @@ function yesNo(input){
 function chars(input){
   return true; 
 }
- 
- 
 
  
  

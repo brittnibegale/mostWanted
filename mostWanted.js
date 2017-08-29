@@ -79,8 +79,7 @@ function searchByTrait(people){
 }
 
 function searchByEyeColor(people) {
-  var userInput =  prompt ("What is the eye color of the person for whom you are searching?");
-
+  var userInput =  prompt ("What is the eye color of the person for whom you are searching?").toLowerCase();
   var findPeople = [];
   for (var i = 0; i < people.length; i++) {
     if (userInput === people[i].eyeColor) {
@@ -113,7 +112,7 @@ function searchByHeight(people) {
 }
 
 function searchByOccupation(people){
-  var occupationInput = promptFor("What is their occupation?", chars).toLowerCase();
+  var occupationInput = promptFor("What is the occupation of the person for whom you are searching?").toLowerCase();
   var myResults = people.filter(function (el){
     if (el.occupation === occupationInput){
       return true;
@@ -123,8 +122,7 @@ function searchByOccupation(people){
 }
 
  function searchByGender(people) {
-  var userInput =  prompt ("What is the gender of the person for whom you are searching?");
-
+  var userInput =  prompt ("What is the gender of the person for whom you are searching?").toLowerCase();
   var findPeople = [];
   for (var i = 0; i < people.length; i++) {
     if (userInput === people[i].gender) {
@@ -135,7 +133,7 @@ function searchByOccupation(people){
 }
 
 function searchByAge(people){
- var inputAge = prompt("Please type the person's age.", chars).toLowerCase();
+ var inputAge = prompt("In years, what is the age of the person for whom you are searching?");
  var myResults = people.filter(function(el){
    var personAge = getAge(el.dob);
     if (personAge === inputAge){

@@ -192,7 +192,6 @@ function searchByEyeColor(people) {
   return findPeople;
 }
 
-
 function searchByWeight(people) {
   var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
   var findPeople = [];
@@ -268,6 +267,7 @@ function getAge(dob) {
 ////////////////////////////////////////////////////////////////////////
 
 
+// Menu function to call once you find who you are looking for
 function mainMenu(person, people){
 
 
@@ -302,44 +302,50 @@ function mainMenu(person, people){
 }
 
 function listOfFamily(person, people){
-    var listSpouse = findSpouse(person, people);
-    var listParents = findParents(person, people);
-    var listSiblings = findSiblings(person, people);
-    var personsId = findId(person, people);
-    var parentsId = findId(listofParents, people);
-    var listOfChildren = findChildren(personsId, people);
+   var listSpouse = findSpouse(person, people);
+   var listParents = findParents(person, people);
+   var listSiblings = findSiblings(person, people);
+   var personsId = findId(person, people);
+   var parentsId = findId(listofParents, people);
+   var listOfChildren = findChildren(personsId, people);
 }
+
 
 function findSpouse(person, people){
- var myResult = people.filter(function(el){
-        if (el.spouse === person.id){
-            return true;
-          }
-    });
+var myResult = people.filter(function(el){
+       if (el.spouse === person.id){
+           return true;
+         }
+   });
 }
-
 function findParents(person, people){//findparents
-  var myResult = people.filter(function(el){
-    if (el.parents[0] === person.parents[0] || el.parents[1] === person.parents[1]){
-        return true; 
-    }
-  });  
+ var myResult = people.filter(function(el){
+   if (el.parents[0] === person.parents[0] || el.parents[1] === person.parents[1]){
+       return true;
+   }
+ });  
 }
-
 function findSiblings(person, people){
-  var myResult = people.filter(function(el))
+ var myResult = people.filter(function(el){
+   if (el.person.parents === el.people.parents){
+     return true;
+   }
+ });
+}
+function findId(person, people){
+  var personID = person.id;
+   var idSearch = []
+       for (var i = 0; i < people.length; i++){
+           if (displayOption === people[i]; i++){
+         idSearch.push(people[i]);
+       }
+     }
+   }
+
+function findChildren(personsId, people){
+  var personsChildren = listOfDescendants();
 }
 
-function findId(person, people){
-    var idSearch = []
-        for (var i = 0; i < people.length; i++){
-            if (displayOption === people[i]; i++){
-          idSearch.push(people[i]);
-        }
-      }
-    }
-
-// alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
@@ -360,19 +366,19 @@ function displayPerson(person){
   alert(personInfo);
 }
 
- // function listOfDescendants(person, people) {
-	// var children = people.filter(function (el) {
-	// 	for (var i = 0; i < el.parents.length; i++) {
-	// 		if (el.parents[i] === person.id) {
-	// 			return true;
-	// 		}
-	// 	}
-	// });	
-	// for (var i = 0; i < children.length; i++) {
-	// 	children = children.concat(listOfDescendants(children[i], people));
-	// }
-	// return children;
-//}
+ function listOfDescendants(person, people) {
+  var children = people.filter(function (el) {
+   for (var i = 0; i < el.parents.length; i++) {
+     if (el.parents[i] === person.id) {
+       return true;
+     }
+   }
+  });  
+  for (var i = 0; i < children.length; i++) {
+   children = children.concat(listOfDescendants(children[i], people));
+  }
+  return children;
+}
 
  
  function promptFor(question, valid){
@@ -389,11 +395,6 @@ function yesNo(input){
 function chars(input){
   return true; 
 }
-
-
- 
- 
- 
  
  
  

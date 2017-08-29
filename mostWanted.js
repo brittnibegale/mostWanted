@@ -387,8 +387,50 @@ function chars(input){
  
  
  
- 
- 
+ function listOfFamily(person, people){
+   var listSpouse = findSpouse(person, people);
+   var listParents = findParents(person, people);
+   var listSiblings = findSiblings(person, people);
+   var personsId = findId(person, people);
+   var parentsId = findId(listofParents, people);
+   var listOfChildren = findChildren(personsId, people);
+}
+
+function findSpouse(person, people){
+var myResult = people.filter(function(el){
+       if (el.spouse === person.id){
+           return true;
+         }
+   });
+}
+
+function findParents(person, people){//findparents
+ var myResult = people.filter(function(el){
+   if (el.parents[0] === person.parents[0] || el.parents[1] === person.parents[1]){
+       return true;
+   }
+ });  
+}
+
+function findSiblings(person, people){
+ var myResult = people.filter(function(el){
+   if (el.person.parents === el.people.parents){
+     return true;
+   }
+ });
+}
+
+function findId(person, people){
+   var idSearch = []
+       for (var i = 0; i < people.length; i++){
+           if (displayOption === people[i]; i++){
+         idSearch.push(people[i]);
+       }
+     }
+   }
+ function findChildren(personsId, people){
+ var personsChildren = listOfDescendants();
+}
 
  
  

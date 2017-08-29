@@ -46,88 +46,26 @@ function searchByTrait(people){
   var traitInformation = [];// ask if this should be an array or just an open variable
   switch(seachByTraitUserInput){
     case 'eye color':
-      if (searchByEyeColor === true){
-      traitInformation = searchByEyeColor(people);
-      }
-      else {
-        var notAnEyeColor = promptFor("That was not an eye color that matched a person in our database. Would you like to re-try entering the person's eye color? yes or no", yesNo).toLowerCase();
-          if (notAnEyeColor === 'yes'){
-            searchByEyeColor(people);
-          }
-            else{
-              searchByTrait(people);
-            }
-      }
-    break;
+		traitInformation = searchByEyeColor(people);
+		break;
     case 'weight':
-    if (searchByWeight === true){
       traitInformation = searchByWeight(people);
-      }
-      else {
-        var notAWeight = promptFor("That was not a weight that matched a person in our database. Would you like to re-try entering the person's weight? yes or no", yesNo).toLowerCase();
-          if (notAWeight === 'yes'){
-            searchByWeight(people);
-          }
-            else{
-              searchByTrait(people);
-            }
-      }
     break;
     case 'height':
     if (searchByHeight === true){
       traitInformation = searchByHeight(people);
-      }
-      else {
-        var notAHeight = promptFor("That was not a height that matched a person in our database. Would you like to re-try entering the person's height? yes or no", yesNo).toLowerCase();
-          if (notAHeight === 'yes'){
-            searchByHeight(people);
-          }
-            else{
-              searchByTrait(people);
-            }
-      }
     break;
     case 'occupation': 
     if (searchByOccupation === true){
      traitInformation = searchByOccupation(people);
-      }
-      else {
-        var notAnOccupation = promptFor("That was not an occupation that matched a person in our database. Would you like to re-try entering the person's occupation? yes or no", yesNo).toLowerCase();
-          if (notAnOccupation === 'yes'){
-            searchByOccupation(people);
-          }
-            else{
-              searchByTrait(people);
-            }
-      }
     break;
     case 'age': 
     if (searchByAge === true){
      traitInformation = searchByAge(people);
-      }
-      else {
-        var notAnAge = promptFor("That was not an age that matched a person in our database. Would you like to re-try entering the person's age? yes or no", yesNo).toLowerCase();
-          if (notAnAge === 'yes'){
-            searchByAge(people);
-          }
-            else{
-              searchByTrait(people);
-            }
-      }
     break;
     case 'gender':
       if (searchByGender === true){
         traitInformation = searchByGender(people);
-      } 
-        else {
-          var notAGender = promptFor ("That was not a gender that matched a person in our database. Would you like ot re-try entering the person's gender? yes or no", yesNo).toLowerCase();
-          if (notAGender === 'yes'){
-            searchByGender(people);
-          }
-            else {
-              searchByTrait(people);
-            }
-        }
     default:
     var nextTraitSearch = prompt("Would you like to keep searching traits? yes or no", yesNo).toLowerCase();
       if (nextTraitSearch === "yes"){
@@ -377,7 +315,27 @@ function chars(input){
  
  
  
- 
+ function listOfDescendants(person, people) {
+	var children = people.filter(function (el) {
+
+		for (var i = 0; i < el.parents.length; i++) {
+			if (el.parents[i] === person.id) {
+				return true;
+			}
+		}
+	});	
+
+	for (var i = 0; i < children.length; i++) {
+		children = children.concat(listOfDescendants(children[i], people));
+	}
+	
+	return children;
+	
+}
+
+var test = listOfDescendants(allPeople[8], allPeople);
+
+console.log(test);
  
  
  

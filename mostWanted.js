@@ -39,20 +39,11 @@ function searchByName(people){
     return myResult;
 }
 
-// function creatingFirstAndLastNameOnly(peoplesTraitInformation,people){
-//   for (i = 0; i < peoplesTraitInformation.length; i++){
-//           var personInfo = "First Name: " + peoplesTraitInformation.firstName + "\n";
-//           personInfo += "Last Name: " + peoplesTraitInformation.lastName + "\n";
-//           personInfo.push(listOfFirstAndLastName);
-//           var listOfFirstAndLastName = "";
-//   }
-//     return listOfFirstAndLastName;
-// }
-
-function creatingFirstAndLastNameOnly(peoplesTraitInformation,people){
-  (people.map(function(peoplesTraitInformation){
+function creatingFirstAndLastNameOnly(peoplesTraitInformation, people){
+  var listOfNames = (peoplesTraitInformation.map(function(peoplesTraitInformation){
     return peoplesTraitInformation.firstName + " " + peoplesTraitInformation.lastName;
   }).join("\n"));
+  return listOfNames;
 }
 
 function refiningTraitSearch(peoplesTraitInformation, people){
@@ -62,7 +53,7 @@ function refiningTraitSearch(peoplesTraitInformation, people){
         }
         else if (refiningSearch === "no" && peoplesTraitInformation.length > 1){
           var namesOfCurrentSearch = creatingFirstAndLastNameOnly(peoplesTraitInformation, people);
-          var choseOnePersonFromArray = promptFor("You have too many people in search." + namesOfCurrentSearch + "Would you like to know more about one of these people's information, family, or descendants? yes or no", yesNo).toLowerCase();
+          var choseOnePersonFromArray = promptFor("You have too many people in search." + "\n" + namesOfCurrentSearch + "\n" + "Would you like to know more about one of these people's information, family, or descendants? yes or no", yesNo).toLowerCase();
           if (choseOnePerson === "yes"){
             var chosenPerson = searchByName(people);
             mainMenu(chosenPerson , people);
@@ -372,7 +363,22 @@ function displayPerson(person){
   alert(personInfo);
 }
 
-function promptFor(question, valid){
+ function listOfDescendants(person, people) {
+	var children = people.filter(function (el) {
+		for (var i = 0; i < el.parents.length; i++) {
+			if (el.parents[i] === person.id) {
+				return true;
+			}
+		}
+	});	
+	for (var i = 0; i < children.length; i++) {
+		children = children.concat(listOfDescendants(children[i], people));
+	}
+	return children;
+}
+
+ 
+ function promptFor(question, valid){
   do{
     var response = prompt(question).trim();
   } while(!response || !valid(response));
@@ -385,105 +391,4 @@ function yesNo(input){
 
 function chars(input){
   return true; 
-}
-
-function listOfFamily(person, people){
-
-}
- 
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- function listOfDescendants(person, people) {
-  var children = people.filter(function (el) {
-    for (var i = 0; i < el.parents.length; i++) {
-      if (el.parents[i] === person.id) {
-        return true;
-      }
-    }
-  }); 
-  for (var i = 0; i < children.length; i++) {
-    children = children.concat(listOfDescendants(children[i], people));
-  }
-  return children;
-}
-var test = listOfDescendants(allPeople[8], allPeople);
-console.log(test);
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- //search by gender
- 
- function searchByGender(people) {
-	var userInput =  prompt ("What is the gender of the person for whom you are searching?");
-
-	var findPeople = [];
-	for (var i = 0; i < people.length; i++) {
-		if (userInput === people[i].gender) {
-			findPeople.push(people[i]);
-		}
-	}
-	return searchByGender(people);
 }

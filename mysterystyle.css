@@ -1,5 +1,5 @@
 body {
-   background-image: url(paper_texture_big.jpg);
+   background-image: url(7paper_texture_big_100923.jpg);
 }
 h1{
   color:black;
@@ -8,9 +8,15 @@ h1{
 p{
 	font-family:"Courier New", Courier, monospace;
 }
-.boldClass {
-   font-weight:bold;
+.floatRight {
+	float: right;
+	margin:10px 0 40px 20px;
+	vertical-align: text-top;
+	text-align: right;
 }
-#bigID [
-   font-size: 24px;
+.floatLeft {
+	float:left;
+	margin: 0 20px 5px 0;
+	vertical-align:text-top;
+	text-align:left;
 }

@@ -9,7 +9,7 @@ function app(people){
       mainMenu(name, people);
       }
         else{
-          var notAName = promptFor(Sorry, there are no results for that name. Would you like to search by entering the person's name? Please enter: yes or no", yesNo).toLowerCase();
+          var notAName = promptFor("Sorry, there are no results for that name. Would you like to search by entering the person's name? Please enter: yes or no", yesNo).toLowerCase();
             if (notAName === 'yes'){
               searchByName(people);
             }

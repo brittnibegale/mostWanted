@@ -79,20 +79,20 @@ function searchByTrait(people){
 }
 
 function searchByEyeColor(people) {
-	var userInput =  prompt ("What is the eye color of the person for whom you are searching?");
+  var userInput =  prompt ("What is the eye color of the person for whom you are searching?");
 
-	var myResults = [];
-	for (var i = 0; i < people.length; i++) {
-		if (userInput === people[i].eyeColor) {
-			myResults.push(people[i]);
-		}
-	}
-	return myResults;
+  var findPeople = [];
+  for (var i = 0; i < people.length; i++) {
+    if (userInput === people[i].eyeColor) {
+      findPeople.push(people[i]);
+    }
+  }
+  return findPeople;
 }
 
 function searchByWeight(people) {
-	var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
-  var myResults = [];
+  var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
+  var findPeople = [];
   for (var i = 0; i < people.length; i++){
     if (userInput === people [i].weight){
       myResults.push(people[i]);
@@ -375,4 +375,16 @@ console.log(test);
  
  
  
+ //search by gender
  
+ function searchByGender(people) {
+	var userInput =  prompt ("What is the gender of the person for whom you are searching?");
+
+	var findPeople = [];
+	for (var i = 0; i < people.length; i++) {
+		if (userInput === people[i].gender) {
+			findPeople.push(people[i]);
+		}
+	}
+	return searchByGender(people);
+}

@@ -1,0 +1,22 @@
+body {
+   background-image: url(7paper_texture_big_100923.jpg);
+}
+h1{
+  color:black;
+  font-family: "Courier New", Courier, monospace;
+}
+p{
+	font-family:"Courier New", Courier, monospace;
+}
+.floatRight {
+	float: right;
+	margin:10px 0 40px 20px;
+	vertical-align: text-top;
+	text-align: right;
+}
+.floatLeft {
+	float:left;
+	margin: 0 20px 5px 0;
+	vertical-align:text-top;
+	text-align:left;
+}

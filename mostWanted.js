@@ -213,19 +213,19 @@ function searchByWeight(people) {
   return myResults;
 }
 
-function searchByHeight(people) {
-	var userInput =  prompt ("In inches, what is the height of the person for whom you are searching?");
-	var myResults = [];
-	for (var i = 0; i < people.length; i++){
-		if (userInput === people[i].height){
-			myResults.push(people[i]);
-		}
-	}
-	return myResults;
+function searchByEyeColor(people) {
+  var userInput =  prompt ("What is the eye color of the person for whom you are searching?").toLowerCase();
+  var findPeople = [];
+  for (var i = 0; i < people.length; i++) {
+    if (userInput === people[i].eyeColor) {
+      findPeople.push(people[i]);
+    }
+  }
+  return findPeople;
 }
 
 function searchByOccupation(people){
-  var occupationInput = promptFor("What is their occupation?", chars).toLowerCase();
+  var occupationInput = prompt ("What is the occupation of the person for whom you are searching?").toLowerCase();
   var myResults = people.filter(function (el){
     if (el.occupation === occupationInput){
       return true;
@@ -235,8 +235,7 @@ function searchByOccupation(people){
 }
 
  function searchByGender(people) {
-  var userInput =  prompt ("What is the gender of the person for whom you are searching?");
-
+  var userInput =  prompt ("What is the gender of the person for whom you are searching?").toLowerCase();
   var findPeople = [];
   for (var i = 0; i < people.length; i++) {
     if (userInput === people[i].gender) {
@@ -247,6 +246,7 @@ function searchByOccupation(people){
 }
 
 function searchByAge(people){
+ var inputAge = prompt ("In years, what is the age of the person for whom you are searching?");
  var inputAge = prompt("Please type the person's age.", chars);
  var myResults = people.filter(function(el){
    var personAge = getAge(el.dob);
@@ -267,7 +267,6 @@ function getAge(dob) {
    }
    return age;
 }
-
 // function matchAge(dob){
 //    var personsAge = getAge();
 //    if (personsAge == searchByAge()){ //////////////////////////////not sure if we actually need this/////////////
@@ -308,16 +307,17 @@ function mainMenu(person, people){
     return; // stop execution
     default:
     return mainMenu(person, people); // ask again
-  }
+}
 }
 
 function listOfFamily(person, people){
     var listSpouse = findSpouse(person, people);
-    var listParents = findParents(person, people);
-    var listSiblings = findSiblings(person, people);
+    var listOfParents = findParents(person, people);
+    var listSiblings = findSiblings(listOfParents, people);
     var personsId = findId(person, people);
-    var parentsId = findId(listofParents, people);
+    var parentsId = findId(listOfParents, people);
     var listOfChildren = listOfDescendants(personsId, people);
+    var family = listSpouse + listOfParents + listSiblings + personsId + parentsId + listOfChildren;
 }
 
 function findSpouse(person, people){
@@ -336,11 +336,12 @@ function findParents(person, people){//findparents
     });
   }
    
-function findSiblings(person, people){
-  var siblings = people.filter(function(el){
-    
-  })
+function findSiblings(listOfParents, people){
+  var siblings = listOfDescendants(listOfParents, people);
+  return siblings;
 }
+
+
 
 function findId(person, people){
     var idSearch = []
@@ -389,7 +390,6 @@ function chars(input){
 function listOfFamily(person, people){
 
 }
-
  
 
 
@@ -422,27 +422,20 @@ function listOfFamily(person, people){
  
  
  function listOfDescendants(person, people) {
-	var children = people.filter(function (el) {
-
-		for (var i = 0; i < el.parents.length; i++) {
-			if (el.parents[i] === person.id) {
-				return true;
-			}
-		}
-	});	
-
-	for (var i = 0; i < children.length; i++) {
-		children = children.concat(listOfDescendants(children[i], people));
-	}
-	
-	return children;
-	
+  var children = people.filter(function (el) {
+    for (var i = 0; i < el.parents.length; i++) {
+      if (el.parents[i] === person.id) {
+        return true;
+      }
+    }
+  }); 
+  for (var i = 0; i < children.length; i++) {
+    children = children.concat(listOfDescendants(children[i], people));
+  }
+  return children;
 }
-
 var test = listOfDescendants(allPeople[8], allPeople);
-
 console.log(test);
- 
  
  
  

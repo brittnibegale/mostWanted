@@ -319,7 +319,15 @@ function findSpouse(person, people){
 }
 
 function findParents(person, people){//findparents
-  
+  var myResult = people.filter(function(el){
+    if (el.parents[0] === person.parents[0] || el.parents[1] === person.parents[1]){
+        return true; 
+    }
+  });  
+}
+
+function findSiblings(person, people){
+  var myResult = people.filter(function(el))
 }
 
 function findId(person, people){

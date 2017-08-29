@@ -332,16 +332,15 @@ function findSiblings(listOfParents, people){
   return siblings;
 }
 
-
-
 function findId(person, people){
     var idSearch = []
         for (var i = 0; i < people.length; i++){
-            if (displayOption === people[i]; i++){
+            if (person === people[i]; i++){
           idSearch.push(people[i]);
         }
       }
     }
+
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){

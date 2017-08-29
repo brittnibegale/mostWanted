@@ -168,7 +168,7 @@ function searchByTrait(people){
               searchByTrait(people);
             }
         }
-    default:	
+    default:  
     var nextTraitSearch = prompt ("Would you like to continue to search by traits? 'Yes or No'", yesNo).toLowerCase();
       if (nextTraitSearch === "yes"){
         searchByTrait(peoplesTraitInformation);
@@ -192,6 +192,7 @@ function searchByEyeColor(people) {
   return findPeople;
 }
 
+
 function searchByWeight(people) {
   var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?");
   var findPeople = [];
@@ -204,14 +205,14 @@ function searchByWeight(people) {
 }
 
 function searchByHeight(people) {
-	var userInput =  prompt ("In inches, what is the height of the person for whom you are searching?");
-	var myResults = [];
-	for (var i = 0; i < people.length; i++){
-		if (userInput === people[i].height){
-			myResults.push(people[i]);
-		}
-	}
-	return myResults;
+  var userInput =  prompt ("In inches, what is the height of the person for whom you are searching?");
+  var myResults = [];
+  for (var i = 0; i < people.length; i++){
+    if (userInput === people[i].height){
+      myResults.push(people[i]);
+    }
+  }
+  return myResults;
 }
 
 function searchByOccupation(people){
@@ -267,7 +268,6 @@ function getAge(dob) {
 ////////////////////////////////////////////////////////////////////////
 
 
-// Menu function to call once you find who you are looking for
 function mainMenu(person, people){
 
 

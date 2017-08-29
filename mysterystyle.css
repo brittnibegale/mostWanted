@@ -1,0 +1,16 @@
+body {
+   background-image: url(paper_texture_big.jpg);
+}
+h1{
+  color:black;
+  font-family: "Courier New", Courier, monospace;
+}
+p{
+	font-family:"Courier New", Courier, monospace;
+}
+.boldClass {
+   font-weight:bold;
+}
+#bigID [
+   font-size: 24px;
+}

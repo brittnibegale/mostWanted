@@ -70,11 +70,8 @@ function refiningTraitSearch(peoplesTraitInformation, people){
 }
 
 function searchByTrait(people){
-<<<<<<< HEAD
   var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, or occupation",chars).toLowerCase();
-=======
   var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, person ID number or occupation",chars).toLowerCase();
->>>>>>> 3639bb29c9b0e68155362fe0b862fff2830dc7bf
   var peoplesTraitInformation = [];
   switch(seachByTraitUserInput){
     case 'eye color':
@@ -395,6 +392,5 @@ function yesNo(input){
 
 function chars(input){
   return true; 
-}}
+}
 
-)

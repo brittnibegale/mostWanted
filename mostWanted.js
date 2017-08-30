@@ -76,11 +76,12 @@ function refiningTraitSearch(peoplesTraitInformation, people){
           // }
     }
   }
-
 //function searchByTrait(people){
 //   var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, ID number, or occupation",chars).toLowerCase();
 function searchByTrait(people){
   var seachByTraitUserInput = promptFor("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, ID, or occupation",chars).toLowerCase();
+function searchByTrait(people){
+  var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, person ID number or occupation",chars).toLowerCase();
   var peoplesTraitInformation = [];
   switch(seachByTraitUserInput){
     case 'eye color':
@@ -209,6 +210,11 @@ function searchByTrait(people){
     //displayPeople(refinedPeopleByTrait);
     //mainMenu(refinedPeopleByTrait);
     //break;
+  break;
+    default:	
+    displayPeople(refinedPeopleByTrait);
+    mainMenu(refinedPeopleByTrait);
+    break;
   }
   
 }

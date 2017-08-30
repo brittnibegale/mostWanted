@@ -26,7 +26,6 @@ function app(people){
     break;
   }
 }
-
 function searchByName(people){
   var firstName = promptFor("What is the person's first name?",chars).toUpperCase(0);
   var lastName = promptFor("What is the person's last name?",chars).toUpperCase(0);
@@ -38,14 +37,12 @@ function searchByName(people){
   });
     return myResult;
 }
-
 function creatingFirstAndLastNameOnly(peoplesTraitInformation, people){
   var listOfNames = (peoplesTraitInformation.map(function(peoplesTraitInformation){
     return peoplesTraitInformation.firstName + " " + peoplesTraitInformation.lastName;
   }).join("\n"));
   return listOfNames;
 }
-
 function refiningTraitSearch(peoplesTraitInformation, people){
   if (peoplesTraitInformation === 1){
         //go to displaying person and prompt for finding decendents (mainmenu) 
@@ -73,7 +70,6 @@ function refiningTraitSearch(peoplesTraitInformation, people){
     }
   }
 }
-
 function searchByTrait(people){
   var seachByTraitUserInput = promptFor("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, person ID number or occupation",chars).toLowerCase();
   var peoplesTraitInformation = [];
@@ -93,6 +89,7 @@ function searchByTrait(people){
               searchByTrait(people);
             }
       }
+    }
     break;
     case 'weight':
     var peoplesWeightSearch = searchByWeight(people);
@@ -173,7 +170,7 @@ function searchByTrait(people){
               searchByTrait(people);
             }
         }
-        break;
+    break;
     default:	
     displayPeople(refinedPeopleByTrait);
     mainMenu(refinedPeopleByTrait);
@@ -193,7 +190,6 @@ function searchByEyeColor(people) {
   }
   return myResults;
 }
-
 function searchByWeight(people) {
   var userInput =  promptFor("In pounds, what is the weight of the person for whom you are searching?",chars);
   var userInputNumber = parseInt(userInput);
@@ -205,7 +201,6 @@ function searchByWeight(people) {
   }
   return myResults();
 }
-
 function searchByHeight(people) {
 	var userInput =  promptFor("In inches, what is the height of the person for whom you are searching?",chars);
   var userInputNumber = parseInt(userInput);
@@ -217,7 +212,6 @@ function searchByHeight(people) {
 	}
 	return myResults;
 }
-
 function searchByOccupation(people){
   var occupationInput = promptFor("What is the occupation of the person for whom you are searching?",chars).toLowerCase();
   var myResults = people.filter(function (el){
@@ -227,7 +221,6 @@ function searchByOccupation(people){
   });
    return myResults;
 }
-
  function searchByGender(people) {
   var userInput =  promptFor("What is the gender of the person for whom you are searching?",chars).toLowerCase();
   var myResults = [];
@@ -264,15 +257,11 @@ function getAge(dob) {
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
-
-
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
-
   if(!person){
     alert("Sorry, there are no individuals with that name in the database.");
     return app(people); 
   }
-
 
   var displayOption = prompt (" "+ person.firstName + " " + person.lastName + " . Would you like to view " + person.firstName + " " + person.lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'").toLowerCase();
 
@@ -319,17 +308,18 @@ function displayPerson(person){
 }
 
  function listOfDescendants(person, people) {
-	var children = people.filter(function (el) {
-		for (var i = 0; i < el.parents.length; i++) {
-			if (el.parents[i] === person.id) {
-				return true;
-			}
-		}
-	});	
-	for (var i = 0; i < children.length; i++) {
-		children = children.concat(listOfDescendants(children[i], people));
-	}
-	return children;
+
+  var children = people.filter(function (el) {
+    for (var i = 0; i < el.parents.length; i++) {
+      if (el.parents[i] === person.id) {
+        return true;
+      }
+    }
+  }); 
+  for (var i = 0; i < children.length; i++) {
+    children = children.concat(listOfDescendants(children[i], people));
+  }
+  return children;
 }
  
  function listOfFamily(person, people){
@@ -392,4 +382,3 @@ function yesNo(input){
 function chars(input){
   return true; 
 }
- 

@@ -1,5 +1,16 @@
 "use strict"
 
+
+
+function searchById(people){
+var id = prompt ("What is the person's ID number?");
+var listOfIds = (peoplesTraitInformation.map(function(peoplesTraitInformation){
+var listOfNames = (peoplesTraitInformation.map(function(peoplesTraitInformation){
+return peoplesTraitInformation.firstName + " " + peoplesTraitInformation.lastName;
+  }).join("\n"));
+  return listOfNames;
+  
+  
 function app(people){
   var searchType = promptFor("Do you know the name of the person for whom you are searching? Please enter: yes or no", yesNo).toLowerCase();
     switch(searchType){
@@ -71,7 +82,7 @@ function refiningTraitSearch(peoplesTraitInformation, people){
 }
 
 function searchByTrait(people){
-  var seachByTraitUserInput = promptFor("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, or occupation"),chars).toLowerCase();
+  var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, or occupation"),chars).toLowerCase();
   var peoplesTraitInformation = [];// ask if this should be an array or just an open variable
   switch(seachByTraitUserInput){
     case 'eye color':
@@ -214,7 +225,7 @@ function searchByEyeColor(people) {
 }
 
 function searchByWeight(people) {
-  var userInput =  promptFor("In pounds, what is the weight of the person for whom you are searching?",chars);
+  var userInput =  prompt ("In pounds, what is the weight of the person for whom you are searching?",chars);
   var findPeople = [];
   for (var i = 0; i < people.length; i++){
     if (userInput === people [i].weight){
@@ -433,7 +444,17 @@ function chars(input){
  
  
  
- 
+ //search by ID number
+  function searchById(people) {
+  var userInput =  promptFor("What is the ID number of the person for whom you are searching?");
+  var findPeople = [];
+  for (var i = 0; i < people.length; i++){
+    if (userInput === people [i].id){
+      myResults.push(people[i]);
+    }
+  }
+  return myResults;
+}
  
  
  

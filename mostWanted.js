@@ -183,7 +183,7 @@ function searchByTrait(people){
 /////////////////////////////////////////////////////////////////////////////////////////
 //beginning of search functions
 function searchByEyeColor(people) {
-  var userInput =  prompt ("What is the eye color of the person for whom you are searching?",chars).toLowerCase();
+  var userInput =  promptFor("What is the eye color of the person for whom you are searching?",chars).toLowerCase();
   var myResults = [];
   for (var i = 0; i < people.length; i++) {
     if (userInput === people[i].eyeColor) {
@@ -201,22 +201,22 @@ function searchByWeight(people) {
       myResults.push(people[i]);
     }
   }
-  return myResults;
+  return myResults.toString();
 }
 
 function searchByHeight(people) {
-	var userInput =  prompt ("In inches, what is the height of the person for whom you are searching?",chars);
+	var userInput =  promptFor("In inches, what is the height of the person for whom you are searching?",chars);
 	var myResults = [];
 	for (var i = 0; i < people.length; i++){
 		if (userInput === people[i].height){
 			myResults.push(people[i]);
 		}
 	}
-	return myResults;
+	return myResults.toString();
 }
 
 function searchByOccupation(people){
-  var occupationInput = prompt ("What is the occupation of the person for whom you are searching?",chars).toLowerCase();
+  var occupationInput = promptFor("What is the occupation of the person for whom you are searching?",chars).toLowerCase();
   var myResults = people.filter(function (el){
     if (el.occupation === occupationInput){
       return true;
@@ -226,7 +226,7 @@ function searchByOccupation(people){
 }
 
  function searchByGender(people) {
-  var userInput =  prompt ("What is the gender of the person for whom you are searching?",chars).toLowerCase();
+  var userInput =  promptFor("What is the gender of the person for whom you are searching?",chars).toLowerCase();
   var myResults = [];
   for (var i = 0; i < people.length; i++) {
     if (userInput === people[i].gender) {
@@ -267,14 +267,11 @@ function mainMenu(person, people){
 
   if(!person){
     alert("Sorry, there are no individuals with that name in the database.");
-    return app(people); // restart
+    return app(people); 
   }
 
 
   var displayOption = prompt (" "+ person.firstName + " " + person.lastName + " . Would you like to view " + person.firstName + " " + person.lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'").toLowerCase();
-
-  var displayOption = prompt(" " + person.firstName + " "  + person.lastName + " . Would you like to view " + person.firstName + " " + person.lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'").toLowerCase();
-
 
   switch(displayOption){
     case "info":
@@ -282,16 +279,16 @@ function mainMenu(person, people){
     break;
     case "family":
     return myResults;
-    listOfFamily(person);// TODO: get person's family
+    listOfFamily(person);
     break;
     case "descendants":
     listOfDescendants(person);
     break;
     case "restart":
-    app(people); // restart
+    app(people); 
     break;
     case "quit":
-    return; // stop execution
+    return;
     default:
     return mainMenu(person, people); // ask again
   }
@@ -309,7 +306,7 @@ function displayPerson(person){
   var personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender:" + person.gender + "\n"; 
-  personInfo += "Date of Birth:" + person.dob + "\n"; 
+  personInfo += "Age:" + getAge(el.dob) + "\n"; 
   personInfo += "Height:" + person.height + "\n";
   personInfo += "Weight:" + person.weight + "\n";
   personInfo += "Eye Color" + person.eyeColor + "\n";

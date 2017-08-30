@@ -1,10 +1,4 @@
-function searchById(people){
-var id = prompt ("What is the person's ID number?");
-var listOfIds = (peoplesTraitInformation.map(function(peoplesTraitInformation){
-var listOfNames = (peoplesTraitInformation.map(function(peoplesTraitInformation){
-return peoplesTraitInformation.firstName + " " + peoplesTraitInformation.lastName;
-  }).join("\n"));
-  return listOfNames;
+
 
 
 const data = [

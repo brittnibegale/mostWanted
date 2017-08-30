@@ -28,9 +28,10 @@ function app(people){
 }
 
 function searchByName(people){
-  var firstName = promptFor("What is the person's first name?",chars).toUpperCase(0);
-  var lastName = promptFor("What is the person's last name?",chars).toUpperCase(0);
-  
+  var firstName = promptFor("What is the person's first name?",chars);
+  firstName = firstName.charAt(0).toUpperCase() + firstName.substr(1);
+  var lastName = promptFor("What is the person's last name?",chars).split("");
+  lastName = lastName.charAt(0).toUpperCase() + lastName.substr(1);
   var myResult = people.filter(function (el){
     if (el.firstName === firstName && el.lastName === lastName){
       return true; 
@@ -61,7 +62,7 @@ function refiningTraitSearch(peoplesTraitInformation, people){
           else if (refiningSearch === "no" && peoplesTraitInformation.length > 1){
             var namesOfCurrentSearch = creatingFirstAndLastNameOnly(peoplesTraitInformation, people);
             var choseOnePersonFromArray = promptFor("The following people meet your search criteria:" + "\n" + namesOfCurrentSearch + "\n" + "\n" + "Would you like more information regarding one of these individual's information, family, or descendants? Please enter: yes or no", yesNo).toLowerCase();
-            if (choseOnePerson === "yes"){
+            if (choseOnePersonFromArray === "yes"){
               var chosenPerson = searchByName(people);
               mainMenu(chosenPerson , people);
             }
@@ -76,7 +77,10 @@ function refiningTraitSearch(peoplesTraitInformation, people){
           // }
     }
   }
-
+//function searchByTrait(people){
+//   var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, ID number, or occupation",chars).toLowerCase();
+function searchByTrait(people){
+  var seachByTraitUserInput = promptFor("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, ID, or occupation",chars).toLowerCase();
 function searchByTrait(people){
   var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, person ID number or occupation",chars).toLowerCase();
   var peoplesTraitInformation = [];
@@ -131,7 +135,7 @@ function searchByTrait(people){
     break;
     case 'occupation': 
     var peoplesOccupationSearch = searchByOccupation(people);
-    if (Array.isArray(peoplesOccupationSearch) === true && peoplesOccupationSearch.length >= 1){
+    if (peoplesOccupationSearch.length >= 1){
      peoplesTraitInformation = peoplesOccupationSearch;
      var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
       }
@@ -179,7 +183,7 @@ function searchByTrait(people){
 	break;
     case 'id':
     var peoplesIdSearch = searchById(people);
-      if (Array.isArray(peoplesIdSearch) === true && peoplesIdSearch.length > 1){
+      if (Array.isArray(peoplesIdSearch) === true && peoplesIdSearch.length >= 1){
         peoplesTraitInformation = peoplesIdSearch;
         var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
       } 
@@ -193,6 +197,7 @@ function searchByTrait(people){
             }
         }
 	break;		
+    default:	
     var nextTraitSearch = promptFor("Would you like to continue searching by traits? Please enter: yes or no", yesNo).toLowerCase();
       if (nextTraitSearch === "yes"){
         searchByTrait(peoplesTraitInformation);
@@ -201,12 +206,18 @@ function searchByTrait(people){
       else{
         mainMenu(peoplesTraitInformation, people);
       }
+    break;
+    // default:	
+    //displayPeople(refinedPeopleByTrait);
+    //mainMenu(refinedPeopleByTrait);
+    //break;
   break;
     default:	
     displayPeople(refinedPeopleByTrait);
     mainMenu(refinedPeopleByTrait);
     break;
   }
+  
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 //beginning of search functions
@@ -230,6 +241,7 @@ function searchById(people) {
             myResults.push(people[i]);
         }
     }
+	console.log(myResults);
     return myResults;
 }
 
@@ -327,7 +339,7 @@ function mainMenu(person, people){
     alert("Sorry, there are no individuals with that name in the database.");
     return app(people); 
   }
-  
+
   var displayOption = promptFor(" "+ person[0].firstName + " " + person[0].lastName + " . Would you like to view " + person[0].firstName + " " + person[0].lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'",chars).toLowerCase();
 
   switch(displayOption){
@@ -420,17 +432,6 @@ function findSiblings(person, people){
     }
   });
 }
-
-function searchById(people) {
- var userInput =  promptFor("What is the ID number of the person for whom you are searching?",chars);
- var userInputNumber = parseInt(userInput);    
- var myResults = [];    
-   for (var i = 0; i < people.length; i++){        
-	if (userInputNumber === people[i].id){            
-	myResults.push(people[i]);        
-	}    
-}    
-return myResults;}
 
 function promptFor(question, valid){
   do{

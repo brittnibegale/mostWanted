@@ -44,9 +44,11 @@ function creatingFirstAndLastNameOnly(peoplesTraitInformation, people){
   return listOfNames;
 }
 function refiningTraitSearch(peoplesTraitInformation, people){
-  if (peoplesTraitInformation === 1){
-        //go to displaying person and prompt for finding decendents (mainmenu) 
-    else{
+  if (peoplesTraitInformation.length === 1){
+    mainMenu(peoplesTraitInformation, people)
+        //go to displaying person and prompt for finding decendents (mainmenu)
+        } 
+    else if (peoplesTraitInformation.length > 1){
       var refiningSearch = promptFor("Your current search has" + " " + peoplesTraitInformation.length + " results. Would you like to refine your search by searching more traits? Please enter: yes or no", yesNo).toLowerCase();
           if (refiningSearch === "yes"){
             searchByTrait(peoplesTraitInformation);
@@ -69,14 +71,14 @@ function refiningTraitSearch(peoplesTraitInformation, people){
           // }
     }
   }
-}
+
 function searchByTrait(people){
-  var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, ID, or occupation",chars).toLowerCase();
+  var seachByTraitUserInput = promptFor("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, ID, or occupation",chars).toLowerCase();
   var peoplesTraitInformation = [];
   switch(seachByTraitUserInput){
     case 'eye color':
     var peoplesEyeColorSearch = searchByEyeColor(people);
-      if (Array.isArray(peoplesEyeColorSearch) === true && peoplesEyeColorSearch.length > 1){
+      if (Array.isArray(peoplesEyeColorSearch) === true && peoplesEyeColorSearch.length >= 1){
         peoplesTraitInformation = peoplesEyeColorSearch;
         var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
       }
@@ -89,11 +91,10 @@ function searchByTrait(people){
               searchByTrait(people);
             }
       }
-    }
     break;
     case 'weight':
     var peoplesWeightSearch = searchByWeight(people);
-    if (Array.isArray(peoplesWeightSearch) === true && peoplesWeightSearch.length > 1){
+    if (Array.isArray(peoplesWeightSearch) === true && peoplesWeightSearch.length >= 1){
       peoplesTraitInformation = peoplesWeightSearch;
       var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
       }
@@ -109,7 +110,7 @@ function searchByTrait(people){
     break;
     case 'height':
     var peoplesHeightSearch = searchByHeight(people);
-    if (Array.isArray(peoplesHeightSearch) === true && peoplesHeightSearch.length > 1){
+    if (Array.isArray(peoplesHeightSearch) === true && peoplesHeightSearch.length >= 1){
       peoplesTraitInformation = peoplesHeightSearch;
       var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
       }
@@ -125,7 +126,7 @@ function searchByTrait(people){
     break;
     case 'occupation': 
     var peoplesOccupationSearch = searchByOccupation(people);
-    if (Array.isArray(peoplesOccupationSearch) === true && peoplesOccupationSearch.length > 1){
+    if (Array.isArray(peoplesOccupationSearch) === true && peoplesOccupationSearch.length >= 1){
      peoplesTraitInformation = peoplesOccupationSearch;
      var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
       }
@@ -141,7 +142,7 @@ function searchByTrait(people){
     break;
     case 'age': 
     var peoplesAgeSearch = searchByAge(people);
-    if (Array.isArray(peoplesAgeSearch) === true && peoplesAgeSearch.length > 1){
+    if (Array.isArray(peoplesAgeSearch) === true && peoplesAgeSearch.length >= 1){
      peoplesTraitInformation = peoplesAgeSearch;
      var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
       }
@@ -157,7 +158,7 @@ function searchByTrait(people){
     break;
     case 'gender':
     var peoplesGenderSearch = searchByGender(people);
-      if (Array.isArray(peoplesGenderSearch) === true && peoplesGenderSearch.length > 1){
+      if (Array.isArray(peoplesGenderSearch) === true && peoplesGenderSearch.length >= 1){
         peoplesTraitInformation = peoplesGenderSearch;
         var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
       } 
@@ -176,7 +177,6 @@ function searchByTrait(people){
     mainMenu(refinedPeopleByTrait);
     break;
   }
-
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 //beginning of search functions
@@ -266,10 +266,10 @@ function mainMenu(person, people){
     return app(people); 
   }
 
-  var displayOption = prompt (" "+ person.firstName + " " + person.lastName + " . Would you like to view " + person.firstName + " " + person.lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'").toLowerCase();
+  var displayOption = promptFor(" "+ person[0].firstName + " " + person[0].lastName + " . Would you like to view " + person.firstName + " " + person.lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'",chars).toLowerCase();
 
   switch(displayOption){
-    case "info":
+    case "information":
     displayPerson(person);
     break;
     case "family":

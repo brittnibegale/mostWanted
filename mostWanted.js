@@ -76,10 +76,9 @@ function refiningTraitSearch(peoplesTraitInformation, people){
           // }
     }
   }
-}
 
-function searchByTrait(people){
-  var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, ID number, or occupation",chars).toLowerCase();
+//function searchByTrait(people){
+//   var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, ID number, or occupation",chars).toLowerCase();
 function searchByTrait(people){
   var seachByTraitUserInput = promptFor("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, ID, or occupation",chars).toLowerCase();
   var peoplesTraitInformation = [];
@@ -182,7 +181,7 @@ function searchByTrait(people){
 	break;
     case 'id':
     var peoplesIdSearch = searchById(people);
-      if (Array.isArray(peoplesIdSearch) === true && peoplesIdSearch.length > 1){
+      if (Array.isArray(peoplesIdSearch) === true && peoplesIdSearch.length >= 1){
         peoplesTraitInformation = peoplesIdSearch;
         var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
       } 
@@ -195,7 +194,7 @@ function searchByTrait(people){
               searchByTrait(people);
             }
         }
-	break;	
+	break;		
     default:	
     var nextTraitSearch = promptFor("Would you like to continue searching by traits? Please enter: yes or no", yesNo).toLowerCase();
       if (nextTraitSearch === "yes"){
@@ -206,11 +205,12 @@ function searchByTrait(people){
         mainMenu(peoplesTraitInformation, people);
       }
     break;
-    default:	
-    displayPeople(refinedPeopleByTrait);
-    mainMenu(refinedPeopleByTrait);
-    break;
+    // default:	
+    //displayPeople(refinedPeopleByTrait);
+    //mainMenu(refinedPeopleByTrait);
+    //break;
   }
+  
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 //beginning of search functions
@@ -234,6 +234,7 @@ function searchById(people) {
             myResults.push(people[i]);
         }
     }
+	console.log(myResults);
     return myResults;
 }
 
@@ -424,17 +425,6 @@ function findSiblings(person, people){
     }
   });
 }
-
-function searchById(people) {
- var userInput =  promptFor("What is the ID number of the person for whom you are searching?",chars);
- var userInputNumber = parseInt(userInput);    
- var myResults = [];    
-   for (var i = 0; i < people.length; i++){        
-	if (userInputNumber === people[i].id){            
-	myResults.push(people[i]);        
-	}    
-}    
-return myResults;}
 
 function promptFor(question, valid){
   do{

@@ -26,10 +26,12 @@ function app(people){
     break;
   }
 }
+
 function searchByName(people){
-  var firstName = promptFor("What is the person's first name?",chars).toUpperCase(0);
-  var lastName = promptFor("What is the person's last name?",chars).toUpperCase(0);
-  
+  var firstName = promptFor("What is the person's first name?",chars);
+  firstName = firstName.charAt(0).toUpperCase() + firstName.substr(1);
+  var lastName = promptFor("What is the person's last name?",chars).split("");
+  lastName = lastName.charAt(0).toUpperCase() + lastName.substr(1);
   var myResult = people.filter(function (el){
     if (el.firstName === firstName && el.lastName === lastName){
       return true; 
@@ -56,7 +58,7 @@ function refiningTraitSearch(peoplesTraitInformation, people){
           else if (refiningSearch === "no" && peoplesTraitInformation.length > 1){
             var namesOfCurrentSearch = creatingFirstAndLastNameOnly(peoplesTraitInformation, people);
             var choseOnePersonFromArray = promptFor("The following people meet your search criteria:" + "\n" + namesOfCurrentSearch + "\n" + "\n" + "Would you like more information regarding one of these individual's information, family, or descendants? Please enter: yes or no", yesNo).toLowerCase();
-            if (choseOnePerson === "yes"){
+            if (choseOnePersonFromArray === "yes"){
               var chosenPerson = searchByName(people);
               mainMenu(chosenPerson , people);
             }
@@ -126,7 +128,7 @@ function searchByTrait(people){
     break;
     case 'occupation': 
     var peoplesOccupationSearch = searchByOccupation(people);
-    if (Array.isArray(peoplesOccupationSearch) === true && peoplesOccupationSearch.length >= 1){
+    if (peoplesOccupationSearch.length >= 1){
      peoplesTraitInformation = peoplesOccupationSearch;
      var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
       }
@@ -266,7 +268,7 @@ function mainMenu(person, people){
     return app(people); 
   }
 
-  var displayOption = promptFor(" "+ person[0].firstName + " " + person[0].lastName + " . Would you like to view " + person.firstName + " " + person.lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'",chars).toLowerCase();
+  var displayOption = promptFor(" "+ person[0].firstName + " " + person[0].lastName + " . Would you like to view " + person[0].firstName + " " + person[0].lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'",chars).toLowerCase();
 
   switch(displayOption){
     case "information":

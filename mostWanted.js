@@ -327,8 +327,8 @@ function mainMenu(person, people){
     alert("Sorry, there are no individuals with that name in the database.");
     return app(people); 
   }
-  var displayOption = prompt (" "+ person.firstName + " " + person.lastName + " . Would you like to view " + person.firstName + " " + person.lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'").toLowerCase();
-  var displayOption = promptFor(" "+ person[0].firstName + " " + person[0].lastName + " . Would you like to view " + person.firstName + " " + person.lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'",chars).toLowerCase();
+  
+  var displayOption = promptFor(" "+ person[0].firstName + " " + person[0].lastName + " . Would you like to view " + person[0].firstName + " " + person[0].lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'",chars).toLowerCase();
 
   switch(displayOption){
     case "information":

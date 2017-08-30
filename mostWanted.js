@@ -28,8 +28,8 @@ function app(people){
 }
 
 function searchByName(people){
-  var firstName = prompt ("What is the person's first name?", chars).toUpperCase(0);
-  var lastName = prompt ("What is the person's last name?", chars).toUpperCase(0);
+  var firstName = prompt ("What is the person's first name?",chars).toUpperCase(0);
+  var lastName = prompt ("What is the person's last name?",chars).toUpperCase(0);
   
   var myResult = people.filter(function (el){
     if (el.firstName === firstName && el.lastName === lastName){
@@ -71,7 +71,7 @@ function refiningTraitSearch(peoplesTraitInformation, people){
 }
 
 function searchByTrait(people){
-  var seachByTraitUserInput = prompt ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, or occupation").toLowerCase();
+  var seachByTraitUserInput = promptFor("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, or occupation"),chars).toLowerCase();
   var peoplesTraitInformation = [];// ask if this should be an array or just an open variable
   switch(seachByTraitUserInput){
     case 'eye color':
@@ -120,7 +120,7 @@ function searchByTrait(people){
       var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
       }
       else if (peoplesHeightSearch.length === 0){
-        var notAHeight = promptFor("That was not a height that matched a person in our database. Would you like to re-try entering the person's height? yes or no", yesNo).toLowerCase();
+        var notAHeight = prompt ("That was not a height that matched a person in our database. Would you like to re-try entering the person's height? yes or no", yesNo).toLowerCase();
       }
       else {
         var notAHeight = prompt ("Sorry, there are no individuals who meet your criteria. Would you like to try searching by height again? Please enter: yes or no. If yes, try searching by whole numbers, not fractions or decimals. Avoid symbols or letters in your search.", yesNo).toLowerCase();
@@ -189,7 +189,7 @@ function searchByTrait(people){
             }
         }
     default:	
-    var nextTraitSearch = promptFor("Would you like to continue to search by traits? 'Yes or No'", yesNo).toLowerCase();
+    var nextTraitSearch = prompt ("Would you like to continue to search by traits? 'Yes or No'", yesNo).toLowerCase();
     var nextTraitSearch = prompt ("Would you like to continue searching by traits? Please enter: yes or no", yesNo).toLowerCase();
       if (nextTraitSearch === "yes"){
         searchByTrait(peoplesTraitInformation);
@@ -203,7 +203,7 @@ function searchByTrait(people){
 }
 
 function searchByEyeColor(people) {
-  var userInput =  promptFor("What is the eye color of the person for whom you are searching?",chars).toLowerCase();
+  var userInput =  prompt ("What is the eye color of the person for whom you are searching?",chars).toLowerCase();
   var myResults = [];
   for (var i = 0; i < people.length; i++) {
     if (userInput === people[i].eyeColor) {
@@ -225,7 +225,7 @@ function searchByWeight(people) {
 }
 
 function searchByHeight(people) {
-	var userInput =  promptFor("In inches, what is the height of the person for whom you are searching?",chars);
+	var userInput =  prompt ("In inches, what is the height of the person for whom you are searching?",chars);
 	var myResults = [];
 	for (var i = 0; i < people.length; i++){
 		if (userInput === people[i].height){
@@ -236,7 +236,7 @@ function searchByHeight(people) {
 }
 
 function searchByOccupation(people){
-  var occupationInput = promptFor("What is the occupation of the person for whom you are searching?",chars).toLowerCase();
+  var occupationInput = prompt ("What is the occupation of the person for whom you are searching?",chars).toLowerCase();
   var myResults = people.filter(function (el){
     if (el.occupation === occupationInput){
       return true;
@@ -246,7 +246,7 @@ function searchByOccupation(people){
 }
 
  function searchByGender(people) {
-  var userInput =  prompt ("What is the gender of the person for whom you are searching?", chars).toLowerCase();
+  var userInput =  prompt ("What is the gender of the person for whom you are searching?",chars).toLowerCase();
   var myResults = [];
   for (var i = 0; i < people.length; i++) {
     if (userInput === people[i].gender) {
@@ -257,9 +257,9 @@ function searchByOccupation(people){
 }
 
 function searchByAge(people){
- var inputAge = prompt ("In years, what is the age of the person for whom you are searching?", chars);
+ var inputAge = prompt ("In years, what is the age of the person for whom you are searching?",chars);
  // var inputAge = promptFor("Please type the person's age.", chars);
-// var inputAge = promptFor ("In years, what is the age of the person for whom you are searching?", chars);
+// var inputAge = promptFor ("In years, what is the age of the person for whom you are searching?",chars);
 }
 
 function getAge(dob) {
@@ -293,7 +293,7 @@ function mainMenu(person, people){
     return app(people); // restart
   }
 
-  var displayOption = prompt("+ person.firstName + " " + person.lastName + " . Would you like to view " + person.firstName + " " + person.lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'").toLowerCase();
+  var displayOption = prompt (" "+ person.firstName + " " + person.lastName + " . Would you like to view " + person.firstName + " " + person.lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'").toLowerCase();
 
   switch(displayOption){
     case "info":

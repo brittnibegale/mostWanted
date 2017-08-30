@@ -1,7 +1,7 @@
 "use strict"
 
 function app(people){
-  var searchType = prompt ("Do you know the name of the person for whom you are searching? Please enter: yes or no", yesNo).toLowerCase();
+  var searchType = promptFor("Do you know the name of the person for whom you are searching? Please enter: yes or no", yesNo).toLowerCase();
     switch(searchType){
     case 'yes':
       var name = searchByName(people);
@@ -78,6 +78,7 @@ function searchByTrait(people){
       }
       else if(peoplesEyeColorSearch.length === 0){
         var notAnEyeColor = promptFor("That was not an eye color that matched a person in our database. Would you like to re-try entering the person's eye color? Please enter: yes or no", yesNo).toLowerCase();
+      }
       else {
         var notAnEyeColor = promptFor("Sorry, there are no individuals who meet your criteria. Would you like to try searching by eye color again? Please enter: yes or no. If yes, try restricting your search to generic eye colors, such as brown, black, blue, hazel, or green.", yesNo).toLowerCase();
           if (notAnEyeColor === 'yes'){
@@ -97,6 +98,7 @@ function searchByTrait(people){
       }
       else if (peoplesWeightSearch.length === 0){
         var notAWeight = promptFor("That was not a weight that matched a person in our database. Would you like to re-try entering the person's weight? yes or no", yesNo).toLowerCase();
+      }
       else {
         var notAWeight = promptFor("Sorry, there are no individuals who meet your criteria. Would you like to try searching by weight again? Please enter: yes or no. If yes, search by whole numbers, not fractions or decimals. Avoid letters and symbols in your search.", yesNo).toLowerCase();
           if (notAWeight === 'yes'){
@@ -115,6 +117,7 @@ function searchByTrait(people){
       }
       else if (peoplesHeightSearch.length === 0){
         var notAHeight = promptFor("That was not a height that matched a person in our database. Would you like to re-try entering the person's height? yes or no", yesNo).toLowerCase();
+      }
       else {
         var notAHeight = prompt ("Sorry, there are no individuals who meet your criteria. Would you like to try searching by height again? Please enter: yes or no. If yes, try searching by whole numbers, not fractions or decimals. Avoid symbols or letters in your search.", yesNo).toLowerCase();
           if (notAHeight === 'yes'){
@@ -133,6 +136,7 @@ function searchByTrait(people){
       }
       else if (peoplesOccupationSearch.length === 0){
         var notAnOccupation = promptFor("That was not an occupation that matched a person in our database. Would you like to re-try entering the person's occupation? yes or no", yesNo).toLowerCase();
+      }
       else {
         var notAnOccupation = prompt ("Sorry, there are no individuals who meet your criteria. Would you like to try searching by occupation again? Please enter: yes or no. If yes, check your spelling and avoid numbers or symbols in your search.", yesNo).toLowerCase();
           if (notAnOccupation === 'yes'){
@@ -151,6 +155,7 @@ function searchByTrait(people){
       }
       else if (peoplesAgeSearch.length === 0){
         var notAnAge = promptFor("That was not an age that matched a person in our database. Would you like to re-try entering the person's age? 'Yes' or 'No'", yesNo).toLowerCase();
+      }
       else {
         var notAnAge = promptFor("Sorry, there are no individuals who meet your criteria. Would you like to try searching by age again? Please enter: yes or no. If yes, try searching by whole numbers, not fractions or decimals. Avoid symbols or letters in your search.", yesNo).toLowerCase();
           if (notAnAge === 'yes'){
@@ -169,6 +174,7 @@ function searchByTrait(people){
       } 
         else if (peoplesGenderSearch.length === 0){
           var notAGender = promptFor ("Your input was not a gender that matched a person in our database. Would you like ot re-try entering the person's gender? 'Yes or No'", yesNo).toLowerCase();
+        }
         else {
           var notAGender = prompt ("Sorry, there are no individuals who meet your criteria. Would you like to try searching by gender again? Please enter: yes or no. If yes, try searching by male or female. Avoid numbers or symbols in your search.", yesNo).toLowerCase();
           if (notAGender === 'yes'){
@@ -303,7 +309,7 @@ function displayPeople(people){
 function displayPerson(person){
   var personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
-  // personInfo += "Gender:" + person.gender + "\n"; //make this live once gender is running
+  personInfo += "Gender:" + person.gender + "\n"; 
   personInfo += "Date of Birth:" + person.dob + "\n"; 
   personInfo += "Height:" + person.height + "\n";
   personInfo += "Weight:" + person.weight + "\n";
@@ -334,7 +340,7 @@ function displayPerson(person){
    var listOfSiblings = findSiblings(person, people);
    var personsId = findId(person, people);
    var parentsId = findId(listOfParents, people);
-   var listOfChildren = findChildren(personsId, people);
+   var listOfChildren = listOfDescendants(person, people);
    var family = listSpouse + listOfParents + listOfSiblings + listOfChildren;
    return family;
 }
@@ -363,18 +369,16 @@ function findSiblings(person, people){
   });
 }
 
-function findId(person, people){
-   var idSearch = []
-       for (var i = 0; i < people.length; i++){
-           if (displayOption === people[i]; i++){
-         idSearch.push(people[i]);
-            }
-        }
-}
+// function findId(person, people){
+//   person.id;
+//    var idSearch = []
+//        for (var i = 0; i < people.length; i++){
+//            if (displayOption === people[i]){
+//                 idSearch.push(people[i]);
+//             }
+//         }
+// }
 
-function findChildren(personsId, people){
- var personsChildren = listOfDescendants();
-}
 
 function promptFor(question, valid){
   do{

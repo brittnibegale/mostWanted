@@ -76,7 +76,6 @@ function refiningTraitSearch(peoplesTraitInformation, people){
           // }
     }
   }
-}
 
 function searchByTrait(people){
   var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, person ID number or occupation",chars).toLowerCase();
@@ -193,8 +192,7 @@ function searchByTrait(people){
               searchByTrait(people);
             }
         }
-	break;	
-    default:	
+	break;		
     var nextTraitSearch = promptFor("Would you like to continue searching by traits? Please enter: yes or no", yesNo).toLowerCase();
       if (nextTraitSearch === "yes"){
         searchByTrait(peoplesTraitInformation);
@@ -203,7 +201,7 @@ function searchByTrait(people){
       else{
         mainMenu(peoplesTraitInformation, people);
       }
-    break;
+  break;
     default:	
     displayPeople(refinedPeopleByTrait);
     mainMenu(refinedPeopleByTrait);

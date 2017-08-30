@@ -20,7 +20,7 @@ function app(people){
       mainMenu(name, people);
       }
         else{
-          var notAName = promptFor("Sorry, there are no results for that name. Would you like to search by entering the person's name? Please enter: yes or no", yesNo).toLowerCase();
+          var notAName = promptFor("Sorry, there are no results for that name. Would you like to try searching by entering the person's name again? Please enter: yes or no. If yes, check your spelling. Avoid using numbers or symbols.", yesNo).toLowerCase();
             if (notAName === 'yes'){
               searchByName(people);
             }
@@ -39,8 +39,8 @@ function app(people){
 }
 
 function searchByName(people){
-  var firstName = prompt ("What is the person's first name?",chars).toUpperCase(0);
-  var lastName = prompt ("What is the person's last name?",chars).toUpperCase(0);
+  var firstName = promptFor("What is the person's first name?",chars).toUpperCase(0);
+  var lastName = promptFor("What is the person's last name?",chars).toUpperCase(0);
   
   var myResult = people.filter(function (el){
     if (el.firstName === firstName && el.lastName === lastName){
@@ -131,7 +131,7 @@ function searchByTrait(people){
       var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
       }
       else if (peoplesHeightSearch.length === 0){
-        var notAHeight = prompt ("That was not a height that matched a person in our database. Would you like to re-try entering the person's height? yes or no", yesNo).toLowerCase();
+        var notAHeight = prompt ("Sorry, there are no individuals who meet your criteria. Would you like to try searching by height again? Please enter: yes or no. If yes, try searching by whole numbers, not fractions or decimals. Avoid symbols or letters in your search.", yesNo).toLowerCase();
       }
       else {
         var notAHeight = prompt ("Sorry, there are no individuals who meet your criteria. Would you like to try searching by height again? Please enter: yes or no. If yes, try searching by whole numbers, not fractions or decimals. Avoid symbols or letters in your search.", yesNo).toLowerCase();

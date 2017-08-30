@@ -47,30 +47,35 @@ function creatingFirstAndLastNameOnly(peoplesTraitInformation, people){
 }
 
 function refiningTraitSearch(peoplesTraitInformation, people){
-  var refiningSearch = promptFor("Your current search has" + " " + peoplesTraitInformation.length + " results. Would you like to refine your search by searching more traits? Please enter: yes or no", yesNo).toLowerCase();
-        if (refiningSearch === "yes"){
-          searchByTrait(peoplesTraitInformation);
-        }
-        else if (refiningSearch === "no" && peoplesTraitInformation.length > 1){
-          var namesOfCurrentSearch = creatingFirstAndLastNameOnly(peoplesTraitInformation, people);
-          var choseOnePersonFromArray = promptFor("The following people meet your search criteria:" + "\n" + namesOfCurrentSearch + "\n" + "\n" + "Would you like more information regarding one of these individual's information, family, or descendants? Please enter: yes or no", yesNo).toLowerCase();
-          if (choseOnePerson === "yes"){
-            var chosenPerson = searchByName(people);
-            mainMenu(chosenPerson , people);
+  if (peoplesTraitInformation === 1){
+        //go to displaying person and prompt for finding decendents (mainmenu) 
+    else{
+      var refiningSearch = promptFor("Your current search has" + " " + peoplesTraitInformation.length + " results. Would you like to refine your search by searching more traits? Please enter: yes or no", yesNo).toLowerCase();
+          if (refiningSearch === "yes"){
+            searchByTrait(peoplesTraitInformation);
           }
-            else{
-              alert("Thank you for searching!")
-              app(people);
+          else if (refiningSearch === "no" && peoplesTraitInformation.length > 1){
+            var namesOfCurrentSearch = creatingFirstAndLastNameOnly(peoplesTraitInformation, people);
+            var choseOnePersonFromArray = promptFor("The following people meet your search criteria:" + "\n" + namesOfCurrentSearch + "\n" + "\n" + "Would you like more information regarding one of these individual's information, family, or descendants? Please enter: yes or no", yesNo).toLowerCase();
+            if (choseOnePerson === "yes"){
+              var chosenPerson = searchByName(people);
+              mainMenu(chosenPerson , people);
             }
-        }
-        else{
-          displayPeople(peoplesTraitInformation);
-          mainMenu(peoplesTraitInformation , people)
-        }
+              else{
+                alert("Thank you for searching!")
+                app(people);
+              }
+          }
+          // else{
+          //   displayPeople(peoplesTraitInformation);
+          //   mainMenu(peoplesTraitInformation , people)
+          // }
+    }
+  }
 }
 
 function searchByTrait(people){
-  var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, person ID number or occupation",chars).toLowerCase();
+  var seachByTraitUserInput = promptFor("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, person ID number or occupation",chars).toLowerCase();
   var peoplesTraitInformation = [];
   switch(seachByTraitUserInput){
     case 'eye color':
@@ -168,17 +173,13 @@ function searchByTrait(people){
               searchByTrait(people);
             }
         }
+        break;
     default:	
-    var nextTraitSearch = promptFor("Would you like to continue searching by traits? Please enter: yes or no", yesNo).toLowerCase();
-      if (nextTraitSearch === "yes"){
-        searchByTrait(peoplesTraitInformation);
-        var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
-      }
-      else{
-        mainMenu(peoplesTraitInformation, people);
-      }
+    displayPeople(refinedPeopleByTrait);
+    mainMenu(refinedPeopleByTrait);
     break;
   }
+
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 //beginning of search functions
@@ -195,24 +196,26 @@ function searchByEyeColor(people) {
 
 function searchByWeight(people) {
   var userInput =  promptFor("In pounds, what is the weight of the person for whom you are searching?",chars);
+  var userInputNumber = parseInt(userInput);
   var myResults = [];
   for (var i = 0; i < people.length; i++){
-    if (userInput === people [i].weight){
+    if (userInputNumber === people [i].weight){
       myResults.push(people[i]);
     }
   }
-  return myResults.toString();
+  return myResults();
 }
 
 function searchByHeight(people) {
 	var userInput =  promptFor("In inches, what is the height of the person for whom you are searching?",chars);
+  var userInputNumber = parseInt(userInput);
 	var myResults = [];
 	for (var i = 0; i < people.length; i++){
-		if (userInput === people[i].height){
+		if (userInputNumber === people[i].height){
 			myResults.push(people[i]);
 		}
 	}
-	return myResults.toString();
+	return myResults;
 }
 
 function searchByOccupation(people){
@@ -295,7 +298,7 @@ function mainMenu(person, people){
 }
 
 // alerts a list of people
-function displayPeople(people){
+function displayPeople(people, person){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
   }).join("\n"));

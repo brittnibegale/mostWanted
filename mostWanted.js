@@ -70,8 +70,7 @@ function refiningTraitSearch(peoplesTraitInformation, people){
 }
 
 function searchByTrait(people){
-  var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, or occupation",chars).toLowerCase();
-  var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, person ID number or occupation",chars).toLowerCase();
+  var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, ID, or occupation",chars).toLowerCase();
   var peoplesTraitInformation = [];
   switch(seachByTraitUserInput){
     case 'eye color':
@@ -195,14 +194,15 @@ function searchByEyeColor(people) {
 }
 
 function searchByWeight(people) {
-  var userInput =  promptFor("In pounds, what is the weight of the person for whom you are searching?",chars);
-  var myResults = [];
-  for (var i = 0; i < people.length; i++){
-    if (userInput === people [i].weight){
-      myResults.push(people[i]);
+    var userInput =  promptFor("In pounds, what is the weight of the person for whom you are searching?",chars);
+ var userInputNumber = parseInt(userInput);
+    var myResults = [];
+    for (var i = 0; i < people.length; i++){
+        if (userInputNumber === people[i].weight){
+            myResults.push(people[i]);
+        }
     }
-  }
-  return myResults.toString();
+    return myResults;
 }
 
 function searchByHeight(people) {
@@ -258,7 +258,7 @@ function getAge(dob) {
    return age.toString();
 }
 //end of search functions
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){

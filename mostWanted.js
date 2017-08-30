@@ -1,15 +1,4 @@
 "use strict"
-
-
-
-function searchById(people){
-var id = prompt ("What is the person's ID number?");
-var listOfIds = (peoplesTraitInformation.map(function(peoplesTraitInformation){
-var listOfNames = (peoplesTraitInformation.map(function(peoplesTraitInformation){
-return peoplesTraitInformation.firstName + " " + peoplesTraitInformation.lastName;
-  }).join("\n"));
-  return listOfNames;
-  
   
 function app(people){
   var searchType = promptFor("Do you know the name of the person for whom you are searching? Please enter: yes or no", yesNo).toLowerCase();
@@ -59,7 +48,6 @@ function creatingFirstAndLastNameOnly(peoplesTraitInformation, people){
 
 function refiningTraitSearch(peoplesTraitInformation, people){
   var refiningSearch = promptFor("Your current search has" + " " + peoplesTraitInformation.length + " results. Would you like to refine your search by searching more traits? Please enter: yes or no", yesNo).toLowerCase();
-  var refiningSearch = promptFor("Would you like to add additional criteria to your search? Please enter: yes or no", yesNo).toLowerCase();
         if (refiningSearch === "yes"){
           searchByTrait(peoplesTraitInformation);
         }
@@ -82,7 +70,7 @@ function refiningTraitSearch(peoplesTraitInformation, people){
 }
 
 function searchByTrait(people){
-  var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, or occupation"),chars).toLowerCase();
+  var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, person ID number or occupation",chars).toLowerCase();
   var peoplesTraitInformation = [];
   switch(seachByTraitUserInput){
     case 'eye color':
@@ -91,7 +79,6 @@ function searchByTrait(people){
         peoplesTraitInformation = peoplesEyeColorSearch;
         var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
       }
-
       else if(peoplesEyeColorSearch.length === 0){
         var notAnEyeColor = promptFor("That was not an eye color that matched a person in our database. Would you like to re-try entering the person's eye color? Please enter: yes or no", yesNo).toLowerCase();
           if (notAnEyeColor === 'yes'){
@@ -182,8 +169,7 @@ function searchByTrait(people){
             }
         }
     default:	
-    var nextTraitSearch = prompt ("Would you like to continue to search by traits? 'Yes or No'", yesNo).toLowerCase();
-    var nextTraitSearch = prompt ("Would you like to continue searching by traits? Please enter: yes or no", yesNo).toLowerCase();
+    var nextTraitSearch = promptFor("Would you like to continue searching by traits? Please enter: yes or no", yesNo).toLowerCase();
       if (nextTraitSearch === "yes"){
         searchByTrait(peoplesTraitInformation);
         var refinedPeopleByTrait = refiningTraitSearch(peoplesTraitInformation, people);
@@ -250,7 +236,6 @@ function searchByOccupation(people){
   return myResults;
 }
 
-<<<<<<< HEAD
 function searchByAge(people){
  var inputAge = promptFor("In years, what is the age of the person for whom you are searching?", chars);
     var myResults = people.filter(function (el){
@@ -366,7 +351,7 @@ function findSpouse(person, people){
   });
 }
 
-function findParents(person, people){//findparents
+function findParents(person, people){
  var myResult = people.filter(function(el){
    if (el.parents[0] === person.parents[0] || el.parents[1] === person.parents[1]){
        return true;
@@ -381,11 +366,12 @@ function findSiblings(person, people){
     }
   });
 }
+
   function searchById(people) {
   var userInput =  promptFor("What is the ID number of the person for whom you are searching?");
   var findPeople = [];
   for (var i = 0; i < people.length; i++){
-    if (userInput === people [i].id){
+    if (userInput === people[i].id){
       myResults.push(people[i]);
     }
   }

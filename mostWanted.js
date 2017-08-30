@@ -1,5 +1,16 @@
 "use strict"
 
+
+
+function searchById(people){
+var id = prompt ("What is the person's ID number?");
+var listOfIds = (peoplesTraitInformation.map(function(peoplesTraitInformation){
+var listOfNames = (peoplesTraitInformation.map(function(peoplesTraitInformation){
+return peoplesTraitInformation.firstName + " " + peoplesTraitInformation.lastName;
+  }).join("\n"));
+  return listOfNames;
+  
+  
 function app(people){
   var searchType = promptFor("Do you know the name of the person for whom you are searching? Please enter: yes or no", yesNo).toLowerCase();
     switch(searchType){
@@ -9,7 +20,7 @@ function app(people){
       mainMenu(name, people);
       }
         else{
-          var notAName = promptFor("Sorry, there are no results for that name. Would you like to search by entering the person's name? Please enter: yes or no", yesNo).toLowerCase();
+          var notAName = promptFor("Sorry, there are no results for that name. Would you like to try searching by entering the person's name again? Please enter: yes or no. If yes, check your spelling. Avoid using numbers or symbols.", yesNo).toLowerCase();
             if (notAName === 'yes'){
               searchByName(people);
             }
@@ -28,8 +39,8 @@ function app(people){
 }
 
 function searchByName(people){
-  var firstName = prompt ("What is the person's first name?", chars).toUpperCase(0);
-  var lastName = prompt ("What is the person's last name?", chars).toUpperCase(0);
+  var firstName = promptFor("What is the person's first name?",chars).toUpperCase(0);
+  var lastName = promptFor("What is the person's last name?",chars).toUpperCase(0);
   
   var myResult = people.filter(function (el){
     if (el.firstName === firstName && el.lastName === lastName){
@@ -71,8 +82,8 @@ function refiningTraitSearch(peoplesTraitInformation, people){
 }
 
 function searchByTrait(people){
-  var seachByTraitUserInput = prompt ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, or occupation").toLowerCase();
-  var peoplesTraitInformation = [];// ask if this should be an array or just an open variable
+  var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, or occupation"),chars).toLowerCase();
+  var peoplesTraitInformation = [];
   switch(seachByTraitUserInput){
     case 'eye color':
     var peoplesEyeColorSearch = searchByEyeColor(people);
@@ -171,7 +182,7 @@ function searchByTrait(people){
             }
         }
     default:	
-    var nextTraitSearch = promptFor("Would you like to continue to search by traits? 'Yes or No'", yesNo).toLowerCase();
+    var nextTraitSearch = prompt ("Would you like to continue to search by traits? 'Yes or No'", yesNo).toLowerCase();
     var nextTraitSearch = prompt ("Would you like to continue searching by traits? Please enter: yes or no", yesNo).toLowerCase();
       if (nextTraitSearch === "yes"){
         searchByTrait(peoplesTraitInformation);
@@ -186,7 +197,7 @@ function searchByTrait(people){
 /////////////////////////////////////////////////////////////////////////////////////////
 //beginning of search functions
 function searchByEyeColor(people) {
-  var userInput =  promptFor("What is the eye color of the person for whom you are searching?",chars).toLowerCase();
+  var userInput =  prompt ("What is the eye color of the person for whom you are searching?",chars).toLowerCase();
   var myResults = [];
   for (var i = 0; i < people.length; i++) {
     if (userInput === people[i].eyeColor) {
@@ -208,7 +219,7 @@ function searchByWeight(people) {
 }
 
 function searchByHeight(people) {
-	var userInput =  promptFor("In inches, what is the height of the person for whom you are searching?",chars);
+	var userInput =  prompt ("In inches, what is the height of the person for whom you are searching?",chars);
 	var myResults = [];
 	for (var i = 0; i < people.length; i++){
 		if (userInput === people[i].height){
@@ -219,7 +230,7 @@ function searchByHeight(people) {
 }
 
 function searchByOccupation(people){
-  var occupationInput = promptFor("What is the occupation of the person for whom you are searching?",chars).toLowerCase();
+  var occupationInput = prompt ("What is the occupation of the person for whom you are searching?",chars).toLowerCase();
   var myResults = people.filter(function (el){
     if (el.occupation === occupationInput){
       return true;
@@ -229,7 +240,7 @@ function searchByOccupation(people){
 }
 
  function searchByGender(people) {
-  var userInput =  prompt ("What is the gender of the person for whom you are searching?", chars).toLowerCase();
+  var userInput =  prompt ("What is the gender of the person for whom you are searching?",chars).toLowerCase();
   var myResults = [];
   for (var i = 0; i < people.length; i++) {
     if (userInput === people[i].gender) {
@@ -239,6 +250,7 @@ function searchByOccupation(people){
   return myResults;
 }
 
+<<<<<<< HEAD
 function searchByAge(people){
  var inputAge = promptFor("In years, what is the age of the person for whom you are searching?", chars);
     var myResults = people.filter(function (el){
@@ -273,7 +285,11 @@ function mainMenu(person, people){
     return app(people); // restart
   }
 
+
+  var displayOption = prompt (" "+ person.firstName + " " + person.lastName + " . Would you like to view " + person.firstName + " " + person.lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'").toLowerCase();
+
   var displayOption = prompt(" " + person.firstName + " "  + person.lastName + " . Would you like to view " + person.firstName + " " + person.lastName + "'s personal information, family, or descendants?  Enter your preference or enter 'restart' or 'quit'").toLowerCase();
+
 
   switch(displayOption){
     case "info":
@@ -365,17 +381,16 @@ function findSiblings(person, people){
     }
   });
 }
-
-// function findId(person, people){
-//   person.id;
-//    var idSearch = []
-//        for (var i = 0; i < people.length; i++){
-//            if (displayOption === people[i]){
-//                 idSearch.push(people[i]);
-//             }
-//         }
-// }
-
+  function searchById(people) {
+  var userInput =  promptFor("What is the ID number of the person for whom you are searching?");
+  var findPeople = [];
+  for (var i = 0; i < people.length; i++){
+    if (userInput === people [i].id){
+      myResults.push(people[i]);
+    }
+  }
+  return myResults;
+}
 
 function promptFor(question, valid){
   do{
@@ -391,36 +406,4 @@ function yesNo(input){
 function chars(input){
   return true; 
 }
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
  

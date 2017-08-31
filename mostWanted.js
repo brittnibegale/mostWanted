@@ -316,7 +316,8 @@ function mainMenu(person, people){
     listOfFamily(person, people);
     break;
     case "descendants":
-    listOfDescendants(person[0], people);
+    var descendants = listOfDescendants(person[0], people);
+    alert(descendants);
     break;
     case "restart":
     app(people); 
@@ -351,6 +352,15 @@ function displayPerson(person){
   alert(personInfo);
 }
 
+
+ 
+function creatingFirstAndLastName(person){
+  var listOfNames = (person.map(function(person){
+    return person.firstName + " " + person.lastName;
+  }).join("\n"));
+  return listOfNames;
+}
+
  function listOfDescendants(person, people) {
 	var children = people.filter(function (el) {
 		for (var i = 0; i < el.parents.length; i++) {
@@ -362,26 +372,30 @@ function displayPerson(person){
 	for (var i = 0; i < children.length; i++) {
 		children = children.concat(listOfDescendants(children[i], people));
 	}
-	alert(children);
+	return children;
 }
  
  function listOfFamily(person, people){
-   var familyInfo = findSpouseNames (person, people);
-   var parentsNames = findParentsNames (person, people);
-   var childrenName = findChildrensNames (person, people);
-   // var listOfSiblings = findSiblings(person, people);
+   var spouseObject = findSpouseNames (person, people);
+   var spouseName = spouseObject[0].firstName + " " + spouseObject[0].lastName
+   var parentsObject = findParentsNames (person, people);
+   var parentsNames = creatingFirstAndLastName(parentsObject, people);
+   var childrenOject = findChildrensNames (person, people);
+   var childrenName = creatingFirstAndLastNameOnly(childrenOject, people);
+   var listOfSiblings = findSiblings(person, people);
    
-   var familyInfo = spouseName + "\n" + parentsNames + "\n" + listOfChildren; // put listOfSibllings in when its working
+
+   var familyInfo = spouseName + " " + "Parents:"+ " " + parentsNames + " " + "Children:" + " " +  childrenName; // put listOfSibllings in when its working
    alert(familyInfo);
 }
 
 function findChildrensNames (person,people){
   var listOfChildren = listOfDescendants(person[0], people)
-  if(listOfChildren.length === 0){
-    return "No children in database"
+  if(listOfChildren.length >= 1){
+    return listOfChildren;
   }
   else{
-    return listOfChildren;
+    return "No children listed";
   }
 }
 
@@ -389,11 +403,10 @@ function findSpouseNames (person, people){
   var spouseID = person[0].currentSpouse;
   if (spouseID){
   var listSpouse = findById(spouseID, people);
-  var spouseName ="Spouse:" + listSpouse[0].firstName + " " + listSpouse[0].lastName;
-  return spouseName;
+  return listSpouse;
   }
   else {
-    return "No Spouse";
+    return "No Spouse listed";
   }
 }
 
@@ -411,58 +424,43 @@ function findParentsNames(person, people){
  var parentsID = person[0].parents;
  if (parentsID.length >= 2){
       var parent1 = findById(parentsID[0], people);
-      var parent1Name = parent1[0].firstName + " " + parent1[0].lastName;
       var parent2 = findById(parentsID[1], people);
-      var parent2Name = parent2[0].firstName + " " + parent2[0].lastName;
-      var listOfParentNames = "Parents:" + " " + parent1Name + " " + "and" + " " + parent2Name;
+      var listOfParentNames = parent1.concat(parent2);
       return listOfParentNames;
     }
       else if (parentsID.length === 1){
         var parent = findById(parentsID[0], people);
-        var parentName = "Parents:" + " " + parent[0].firstName + " " + parent[0].lastName;
-        return parentName;
+        return parent;
       }
       else {
         return "No parents listed"
       }
 }
-// ///////////////////////////////////////////////////////siblings is below here///////
-// function gathersSiblings(person, people){
-//     var myResults = [];
-//     for (var i = 0; i < people.length; i++){
-//         if (person.id === people[i].parents){
-//             myResults.push(people[i]);
-//         }
-//     }
-//     return myResults;
-// }
 
-// function findSiblings(person,people){
-//   var parent = person[0].parents;
-//   if (parent.length === 2){
-//   var parent1ID = findById(parent[0],people);
-//   var sibling1 = gathersSiblings(parent1ID, people);
-//   var parent2ID = findById(parent[1], people);
-//   var sibling2 = gathersSiblings(parent2ID[0], people);
-//   var totalSiblings = "Siblings:" + " " + sibling1 + " " + sibling2;
-//   return totalSiblings;
-//   }
-//   else if (parent.length === 1){
-//     var parentID = findById(parent[0], people);
-//     var siblings = gathersSiblings(parentID, people);
-//     var listOfSiblings = "Siblings:" + " " + siblings;
-//       if(siblings.length === 0){
-//         return "No siblings in database"
-//       }
-//       else{
-//         return listOfSiblings;
-//       }
-//   }
-//   else{
-//   return "No siblings in database"
-//   }
-// }
-
+function findSiblings (person, people){
+ var parentList = findParentsNames(person, people);
+ if (parentList.length === 2){
+ var myResults = people.filter(function (el){
+    if (el.parents[0] === parentList[0] || el.parents[0] === parentList[1] || el.parents[1] === parentList[0] || el.parents [1] === parentList[0] && !person.id === people.id){
+      return true;
+    }
+  });
+   return myResults;
+  }
+  else if (parentList.length === 1){
+    var myResults = people.filter(function (el){
+    if (el.parents[0] === parentList || el.parents[1] === parentList && !person.id === people.id){
+      return true;
+    }
+  });
+   return myResults;
+  }
+  else{
+    return "No Siblings in database";
+  }
+}
+ 
+  
 function promptFor(question, valid){
   do{
     var response = prompt(question).trim();

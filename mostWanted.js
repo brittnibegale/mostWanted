@@ -210,10 +210,10 @@ function searchByTrait(people){
     //displayPeople(refinedPeopleByTrait);
     //mainMenu(refinedPeopleByTrait);
     //break;
-  break;
-    default:	
-    displayPeople(refinedPeopleByTrait);
-    mainMenu(refinedPeopleByTrait);
+	break;
+    //default:	
+    //displayPeople(refinedPeopleByTrait);
+    //mainMenu(refinedPeopleByTrait);
     break;
   }
   
@@ -435,10 +435,10 @@ function findSiblings(person, people){
 function promptFor(question, valid){
   do{
     var response = prompt(question).trim();
-  } while(!response || !valid(response));
+	while(!response || !valid(response));
   return response;
-}
-
+  }
+  
 function yesNo(input){
   return input.toLowerCase() == "yes" || input.toLowerCase() == "no";
 }

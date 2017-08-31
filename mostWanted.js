@@ -339,15 +339,15 @@ function displayPerson(person){
 }
  
 function creatingFirstAndLastName(person){
-  if (person.length < 1){
-    return person;
+  if (typeof person === 'string' || person instanceof String){
+  return person;
   }
   else{
   var listOfNames = (person.map(function(person){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
   return listOfNames;
-}
+  }
 }
 
 
@@ -366,14 +366,15 @@ function creatingFirstAndLastName(person){
 }
  
  function listOfFamily(person, people){
-   var spouseObject = findSpouseNames (person, people);
-   var spouseName = spouseObject[0].firstName + " " + spouseObject[0].lastName
-   var parentsObject = findParentsNames (person, people);
-   var parentsNames = creatingFirstAndLastName(parentsObject, people);
-   // var childrenOject = findChildrensNames (person, people);
-   // var childrenName = creatingFirstAndLastName(childrenOject, people);
-   var listOfSiblings = findSiblings(person, people);
-   var familyInfo = spouseName + " " + "Parents:"+ " " + parentsNames + " " + "Children:" + " " +  childrenName; // put listOfSibllings in when its working
+   var spouseArray = findSpouseNames (person, people);
+   var spouseName = spouseArray[0].firstName + " " + spouseArray[0].lastName
+   var parentsArray = findParentsNames (person, people);
+   var parentsNames = creatingFirstAndLastName(parentsArray);
+   var childrenArray = findChildrensNames (person, people);
+   var childrenName = creatingFirstAndLastName(childrenArray);
+   var siblingsArray = findSiblings(person, people);
+   var siblingsName = creatingFirstAndLastName(siblingsArray);
+   var familyInfo = "Spouse:" + " " + spouseName + "\n " + "Parents:"+ " " + parentsNames + "\n " + "Children:" + " " +  childrenName + "\n" + "Siblings:" + " " + siblingsName; // put listOfSibllings in when its working
    alert(familyInfo);
 }
 

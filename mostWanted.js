@@ -366,15 +366,23 @@ function displayPerson(person){
 }
  
  function listOfFamily(person, people){
-   var spouseName = findSpouseNames (person, people);
+   var familyInfo = findSpouseNames (person, people);
    var parentsNames = findParentsNames (person, people);
+   var childrenName = findChildrensNames (person, people);
+   // var listOfSiblings = findSiblings(person, people);
    
-   var listOfSiblings = findSiblings(person, people);
-   var personsId = findId(person, people);
-   var parentsId = findId(listOfParents, people);
-   var listOfChildren = listOfDescendants(person, people);
-   var familyInfo = spouseName + parentsNames + listOfSiblings + listOfChildren;
-   alter(familyInfo);
+   var familyInfo = spouseName + "\n" + parentsNames + "\n" + listOfChildren; // put listOfSibllings in when its working
+   alert(familyInfo);
+}
+
+function findChildrensNames (person,people){
+  var listOfChildren = listOfDescendants(person[0], people)
+  if(listOfChildren.length === 0){
+    return "No children in database"
+  }
+  else{
+    return listOfChildren;
+  }
 }
 
 function findSpouseNames (person, people){
@@ -406,27 +414,54 @@ function findParentsNames(person, people){
       var parent1Name = parent1[0].firstName + " " + parent1[0].lastName;
       var parent2 = findById(parentsID[1], people);
       var parent2Name = parent2[0].firstName + " " + parent2[0].lastName;
-      var listOfParentNames = "Parents:" + parent1Name + " " + parent2Name;
+      var listOfParentNames = "Parents:" + " " + parent1Name + " " + "and" + " " + parent2Name;
       return listOfParentNames;
     }
       else if (parentsID.length === 1){
         var parent = findById(parentsID[0], people);
-        var parentName = parent[0].firstName + " " + parent[0].lastName;
+        var parentName = "Parents:" + " " + parent[0].firstName + " " + parent[0].lastName;
         return parentName;
       }
       else {
         return "No parents listed"
       }
 }
+// ///////////////////////////////////////////////////////siblings is below here///////
+// function gathersSiblings(person, people){
+//     var myResults = [];
+//     for (var i = 0; i < people.length; i++){
+//         if (person.id === people[i].parents){
+//             myResults.push(people[i]);
+//         }
+//     }
+//     return myResults;
+// }
 
-function findSiblings(person, people){
- var myResult = people.filter(function(el){
-   if (el.person.parents === el.people.parents){
-     return true;
-    }
-  });
- return myResult
-}
+// function findSiblings(person,people){
+//   var parent = person[0].parents;
+//   if (parent.length === 2){
+//   var parent1ID = findById(parent[0],people);
+//   var sibling1 = gathersSiblings(parent1ID, people);
+//   var parent2ID = findById(parent[1], people);
+//   var sibling2 = gathersSiblings(parent2ID[0], people);
+//   var totalSiblings = "Siblings:" + " " + sibling1 + " " + sibling2;
+//   return totalSiblings;
+//   }
+//   else if (parent.length === 1){
+//     var parentID = findById(parent[0], people);
+//     var siblings = gathersSiblings(parentID, people);
+//     var listOfSiblings = "Siblings:" + " " + siblings;
+//       if(siblings.length === 0){
+//         return "No siblings in database"
+//       }
+//       else{
+//         return listOfSiblings;
+//       }
+//   }
+//   else{
+//   return "No siblings in database"
+//   }
+// }
 
 function promptFor(question, valid){
   do{

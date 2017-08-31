@@ -339,11 +339,17 @@ function displayPerson(person){
 }
  
 function creatingFirstAndLastName(person){
+  if (person.length < 1){
+    return person;
+  }
+  else{
   var listOfNames = (person.map(function(person){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
   return listOfNames;
 }
+}
+
 
  function listOfDescendants(person, people) {
 	var children = people.filter(function (el) {
@@ -364,8 +370,8 @@ function creatingFirstAndLastName(person){
    var spouseName = spouseObject[0].firstName + " " + spouseObject[0].lastName
    var parentsObject = findParentsNames (person, people);
    var parentsNames = creatingFirstAndLastName(parentsObject, people);
-   var childrenOject = findChildrensNames (person, people);
-   var childrenName = creatingFirstAndLastNameOnly(childrenOject, people);
+   // var childrenOject = findChildrensNames (person, people);
+   // var childrenName = creatingFirstAndLastName(childrenOject, people);
    var listOfSiblings = findSiblings(person, people);
    var familyInfo = spouseName + " " + "Parents:"+ " " + parentsNames + " " + "Children:" + " " +  childrenName; // put listOfSibllings in when its working
    alert(familyInfo);
@@ -403,15 +409,15 @@ function findById(person,people) {
 }
 
 function findParentsNames(person, people){
- var parentsID = person[0].parents;
- if (parentsID.length >= 2){
-      var parent1 = findById(parentsID[0], people);
-      var parent2 = findById(parentsID[1], people);
+ var parentsIDs = person[0].parents;
+ if (parentsIDs.length >= 2){
+      var parent1 = findById(parentsIDs[0], people);
+      var parent2 = findById(parentsIDs[1], people);
       var listOfParentNames = parent1.concat(parent2);
       return listOfParentNames;
     }
-      else if (parentsID.length === 1){
-        var parent = findById(parentsID[0], people);
+      else if (parentsIDs.length === 1){
+        var parent = findById(parentsIDs[0], people);
         return parent;
       }
       else {
@@ -423,7 +429,7 @@ function findSiblings (person, people){
  var parentList = findParentsNames(person, people);
  if (parentList.length === 2){
  var myResults = people.filter(function (el){
-    if (el.parents[0] === parentList[0] || el.parents[0] === parentList[1] || el.parents[1] === parentList[0] || el.parents [1] === parentList[0] && !person.id === people.id){
+    if (el.parents[0] === parentList[0].id || el.parents[0] === parentList[1].id || el.parents[1] === parentList[0].id || el.parents [1] === parentList[0].id && !person[0].id === el.id){
       return true;
     }
   });
@@ -431,7 +437,7 @@ function findSiblings (person, people){
   }
   else if (parentList.length === 1){
     var myResults = people.filter(function (el){
-    if (el.parents[0] === parentList || el.parents[1] === parentList && !person.id === people.id){
+    if (el.parents[0] === parentList[0].id || el.parents[1] === parentList[0].id && !person[0].id === el.id){
       return true;
     }
   });

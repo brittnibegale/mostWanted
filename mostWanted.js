@@ -393,6 +393,22 @@ function findChildrensNames (person,people){
   }
 }
 
+
+//can we find children by printing people with parent IDs listed? 
+//function findChildrenNames(person, people){
+// var listOfChildren = listOfDescendants(person[0], people);
+// var parentId;
+// if (parentID.length >= 1){
+//      var children = findById(parentID[], people);
+//      var childrenName = children[].firstName + " " + children[].lastName;
+//      var listOfChildrenNames = iD;
+//      return listOfChildrenNames;
+//    }
+//      else {
+//        return "No children listed"
+//      }
+//}
+
 function findSpouseNames (person, people){
   var spouseID = person[0].currentSpouse;
   if (spouseID){
@@ -470,6 +486,21 @@ function findParentsNames(person, people){
 //   return "No siblings in database"
 //   }
 // }
+
+//can we find siblings by printing people with identical parent IDs? can we use an array to check for parent IDs that occur more than once?
+//function findSiblings(person, people){
+// var listOfSiblings = (person[0].siblings);
+// var parentIdOccurrences;
+// for (var i = 0; i < people.length; i++) {
+// 	if (parentIdOccurrence.length >= 2) {
+// 		myResults.push(people[i]);
+//    return listOfSiblings;
+//    }
+//      else if (parentIdOccurrence <= 1) {
+//        return "No siblings listed"
+//      }
+//}
+
 
 function promptFor(question, valid){
   do{

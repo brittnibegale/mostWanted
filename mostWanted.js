@@ -40,8 +40,6 @@ function searchByName(people){
     return myResult;
 }
 
-
-
 function creatingFirstAndLastNameOnly(peoplesTraitInformation, people){
   var listOfNames = (peoplesTraitInformation.map(function(peoplesTraitInformation){
     return peoplesTraitInformation.firstName + " " + peoplesTraitInformation.lastName;
@@ -71,14 +69,10 @@ function refiningTraitSearch(peoplesTraitInformation, people){
                 app(people);
               }
           }
-          // else{
-          //   displayPeople(peoplesTraitInformation);
-          //   mainMenu(peoplesTraitInformation , people)
-          // }
-    }
+        
   }
-//function searchByTrait(people){
-//   var seachByTraitUserInput = promptFor ("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, ID number, or occupation",chars).toLowerCase();
+}
+
 function searchByTrait(people){
   var seachByTraitUserInput = promptFor("By what trait would you like to search? Please enter one of the following traits: gender, age, eye color, height, weight, ID, or occupation",chars).toLowerCase();
   var peoplesTraitInformation = [];
@@ -178,7 +172,7 @@ function searchByTrait(people){
               searchByTrait(people);
             }
         }
-	break;
+    break;
     case 'id':
     var peoplesIdSearch = searchById(people);
       if (Array.isArray(peoplesIdSearch) === true && peoplesIdSearch.length >= 1){
@@ -283,7 +277,7 @@ function searchByAge(people){
  return myResults;   
 }
 
-function getAge(dob) {
+function getAge(dob){
    var today = new Date();
    var birthDate = new Date(dob);
    var age = today.getFullYear() - birthDate.getFullYear();
@@ -292,14 +286,8 @@ function getAge(dob) {
       }
    return age.toString();
 }
-//end of search functions
 
-
-// Menu function to call once you find who you are looking for
 function mainMenu(person, people){
-
-
-  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
   if(!person){
     alert("Sorry, there are no individuals with that name in the database.");
@@ -325,17 +313,15 @@ function mainMenu(person, people){
     case "quit":
     return;
     default:
-    return mainMenu(person, people); // ask again
+    return mainMenu(person, people); 
   }
 }
 
-// alerts a list of people
 function displayPeople(people, person){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
-  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
 function displayPerson(person){
   var personsDOB = person[0].dob;
@@ -351,8 +337,6 @@ function displayPerson(person){
   personInfo += "Occupation:"+ " " + person[0].occupation + "\n";
   alert(personInfo);
 }
-
-
  
 function creatingFirstAndLastName(person){
   var listOfNames = (person.map(function(person){
@@ -383,8 +367,6 @@ function creatingFirstAndLastName(person){
    var childrenOject = findChildrensNames (person, people);
    var childrenName = creatingFirstAndLastNameOnly(childrenOject, people);
    var listOfSiblings = findSiblings(person, people);
-   
-
    var familyInfo = spouseName + " " + "Parents:"+ " " + parentsNames + " " + "Children:" + " " +  childrenName; // put listOfSibllings in when its working
    alert(familyInfo);
 }
@@ -460,14 +442,14 @@ function findSiblings (person, people){
   }
 }
  
-  
 function promptFor(question, valid){
   do{
     var response = prompt(question).trim();
-  } while(!response || !valid(response));
+	while(!response || !valid(response));
   return response;
+  }
 }
-
+  
 function yesNo(input){
   return input.toLowerCase() == "yes" || input.toLowerCase() == "no";
 }

@@ -384,7 +384,7 @@ function displayPerson(person){
 }
 
 function findChildrensNames (person,people){
-  var listOfChildren = listOfDescendants(person[0], people)
+  var listOfChildren = listOfDescendants(person[0], people);
   if(listOfChildren.length === 0){
     return "No children in database"
   }
@@ -401,8 +401,8 @@ function findChildrensNames (person,people){
 // if (parentID.length >= 1){
 //      var children = findById(parentID[], people);
 //      var childrenName = children[].firstName + " " + children[].lastName;
-//      var listOfChildrenNames = iD;
-//      return listOfChildrenNames;
+//      var listOfChildrenName = iD;
+//      return listOfChildrenName;
 //    }
 //      else {
 //        return "No children listed"

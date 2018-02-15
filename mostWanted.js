@@ -195,7 +195,7 @@ function searchByTrait(people){
             }
         }
     break;
-    // default:	
+    //default:	
     //displayPeople(refinedPeopleByTrait);
     //mainMenu(refinedPeopleByTrait);
     //break;
